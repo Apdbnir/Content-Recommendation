@@ -1,192 +1,57 @@
+/* General Body Styles */
 body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8e8ff 0%, #ffe5ec 18%, #ffd6e0 32%, #e0f7fa 48%, #c1f7ff 65%, #d0f5c7 80%, #fff7c0 90%, #ffe5ec 100%);
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
   background-size: 400% 400%;
-  animation: pastelGradientFlow 18s ease-in-out infinite;
+  animation: gradientBG 15s ease infinite;
 }
 
-@keyframes pastelGradientFlow {
-  0% { background-position: 0% 50%; }
-  25% { background-position: 50% 80%; }
-  50% { background-position: 100% 50%; }
-  75% { background-position: 50% 20%; }
-  100% { background-position: 0% 50%; }
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-.next-btn-text, .next-btn-arrow {
-  transition: transform 0.18s cubic-bezier(.4,0,.2,1);
-}
-.next-btn:hover .next-btn-text,
-.next-btn:hover .next-btn-arrow {
-  transform: scale(1.15);
-}
-.next-btn-arrow {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  top: 3px;
-}
-.next-btn {
-  background: none;
-  border: none;
-  color: #f72585;
-  font-size: 3rem;
-  font-weight: 700;
-  padding: 0 28px 0 0;
-  cursor: pointer;
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 16px auto 0 auto;
-  transition: color 0.2s;
-  box-shadow: none;
-}
-.next-btn-text {
-  color: #f72585;
-  font-size: 3rem;
-  font-weight: 700;
-  margin-right: 12px;
-}
-.next-btn-arrow {
-  display: inline-block;
-  vertical-align: middle;
-}
-.next-btn:hover,
-.next-btn:focus {
-  color: #f72585;
-  background: none;
-  box-shadow: none;
-}
-/* Кнопка Далее прозрачная, только текст и стрелка */
-button[type="submit"] {
-  background: none;
-  border: none;
-  color: #f72585;
-  font-size: 3rem;
-  font-weight: 700;
-  padding: 0 28px 0 0;
-  cursor: pointer;
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 16px auto 0 auto;
-  transition: color 0.2s;
-  box-shadow: none;
-}
-button[type="submit"]:hover,
-button[type="submit"]:focus {
-  color: #f72585;
-  background: none;
-  box-shadow: none;
-}
-.platform-btn.selected {
-  background: linear-gradient(90deg, #ffb86c 0%, #f72585 50%, #7209b7 100%);
-  color: #fff;
-  border: 2px solid #f72585;
-  box-shadow: 0 6px 24px rgba(247,37,133,0.18), 0 2px 8px rgba(255,184,108,0.12);
-  opacity: 1;
-}
-.platform-btn.selected {
-  background: linear-gradient(90deg, #ffb86c 0%, #f72585 50%, #7209b7 100%);
-  color: #fff;
-  border: 2px solid #f72585;
-  box-shadow: 0 6px 24px rgba(247,37,133,0.18), 0 2px 8px rgba(255,184,108,0.12);
-  opacity: 1;
-}
- .service-bar-title {
-  color: #fff;
-  font-size: 3.5rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
-  user-select: none;
-  font-family: 'Segoe UI', 'Arial', sans-serif;
-  margin-top: -18px;
-}
-}
-}
-.platform-window {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto 32px auto;
-  background: #fff;
-  border-radius: 32px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
-  padding: 32px 24px 24px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
+/* Service Bar */
 .service-bar {
   width: 100%;
   max-width: 1500px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 12px;
-  padding-right: 12px;
-  height: 120px;
   margin: 32px auto 24px auto;
+  padding: 0 12px;
+  height: 120px;
   border-radius: 40px;
-  background:
-    radial-gradient(circle at 20% 60%, #ff5e62 0%, #f72585 30%, transparent 60%),
-    radial-gradient(circle at 80% 30%, #ffb86c 0%, #b5179e 40%, transparent 70%),
-    linear-gradient(120deg, #7209b7 0%, #f72585 40%, #ffb86c 80%),
-    linear-gradient(300deg, #3a0ca3 0%, #ff5e62 60%, #b5179e 100%),
-    repeating-linear-gradient(45deg, #ff5e62, #f72585 10%, #b5179e 20%, #ffb86c 30%, #7209b7 40%, #3a0ca3 50%);
-    background: rgba(255,255,255,0.15);
-  background-size: cover;
-  /* animation убрана, полоска статична */
-  box-shadow: 0 4px 16px rgba(255,94,98,0.10), 0 2px 8px rgba(255,153,102,0.08);
+  background: rgba(255,255,255,0.10);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-@keyframes serviceBarCosmicFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+
+.service-bar-title {
+  color: #333;
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: none;
+  user-select: none;
+  margin-top: -18px;
 }
-.platform-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-  margin-bottom: 20px;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 12px;
-  padding-right: 12px;
-  box-sizing: border-box;
-}
-.platform-btn {
-  border: 2px solid #eee;
-  background: transparent;
-  color: #222;
-  border-radius: 40px;
-  padding: 22px 44px;
-  font-size: 1.5rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.08);
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
-  outline: none;
-  position: relative;
-  z-index: 1;
-  letter-spacing: 0.02em;
-  opacity: 0.98;
-  animation: btnFadeIn 0.7s cubic-bezier(.4,0,.2,1);
-}
-@keyframes btnFadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 0.96; transform: scale(1); }
-}
+
+/* Platform Selection Area */
 .platform-window {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto 32px auto;
-    background: rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.10);
   border-radius: 32px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.10);
   padding: 32px 24px 24px 24px;
@@ -194,29 +59,7 @@ button[type="submit"]:focus {
   flex-direction: column;
   align-items: center;
 }
- .service-bar {
-  width: 100%;
-  max-width: 1500px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 12px;
-  padding-right: 12px;
-  height: 120px;
-  margin: 32px auto 24px auto;
-  border-radius: 40px;
-  background: linear-gradient(90deg, #3a0ca3 0%, #7209b7 25%, #b5179e 50%, #f72585 75%, #ff5e62 100%);
-  background-size: 200% 200%;
-  animation: serviceBarCosmicFlow 8s ease-in-out infinite;
-@keyframes serviceBarCosmicFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-  box-shadow: 0 4px 16px rgba(255,94,98,0.10), 0 2px 8px rgba(255,153,102,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .platform-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -224,83 +67,79 @@ button[type="submit"]:focus {
   justify-content: center;
   margin-bottom: 20px;
   max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+/* Platform Buttons */
 .platform-btn {
-  border: 2px solid #eee;
-    background: #fff;
+  background: rgba(255,255,255,0.85);
   color: #222;
+  font-size: 1.3rem;
+  border: none;
   border-radius: 40px;
-  padding: 22px 44px;
-  font-size: 1.5rem;
-  font-weight: 600;
+  padding: 18px 48px;
+  margin: 18px 16px;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.08);
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+  box-shadow: 0 6px 32px 0 rgba(255,255,255,0.7), 0 2px 8px 0 rgba(127, 83, 172, 0.18);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
   outline: none;
   position: relative;
   z-index: 1;
   letter-spacing: 0.02em;
-  opacity: 0.98;
   animation: btnFadeIn 0.7s cubic-bezier(.4,0,.2,1);
 }
-.platform-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 20px;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 12px;
-  padding-right: 12px;
-  box-sizing: border-box;
-  outline: none;
-  position: relative;
-  z-index: 1;
-  letter-spacing: 0.02em;
-  opacity: 0.96;
-/* removed stray closing brace */
+
+@keyframes btnFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.platform-btn:hover {
+  box-shadow: 0 12px 40px rgba(255,255,255,0.95), 0 2px 12px rgba(127, 83, 172, 0.22);
+  transform: scale(1.09);
+  color: #fff;
+}
+
 .platform-btn:active {
   transform: scale(0.97);
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  opacity: 0.92;
 }
-.platform-btn:hover {
+
+.platform-btn.selected {
   color: #fff;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.16), 0 2px 8px rgba(0,0,0,0.10);
-  transform: scale(1.04);
-  opacity: 1;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.2);
 }
-.platform-btn {
-  animation: btnFadeIn 0.7s cubic-bezier(.4,0,.2,1);
-}
-@keyframes btnFadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 0.96; transform: scale(1); }
-}
-}
-.platform-btn.youtube { border-color: #ff0000; }
-.platform-btn.spotify { border-color: #1db954; }
-.platform-btn.vk { border-color: #4680c2; }
-.platform-btn.netflix { border-color: #e50914; }
-.platform-btn.telegram { border-color: #229ED9; }
-.platform-btn.twitch { border-color: #9147ff; }
-.platform-btn.reddit { border-color: #ff4500; }
-.platform-btn.facebook { border-color: #1877f2; }
-.platform-btn.x { border-color: #171a21; }
-.platform-btn.instagram { border-color: #E1306C; }
-.platform-btn.tiktok { border-color: #000; }
-.platform-btn.linkedin { border-color: #0077b5; }
-.platform-btn.discord { border-color: #5865F2; }
-.platform-btn.steam { border-color: #000096; }
-.platform-btn.github { border-color: #333; }
-.platform-btn:hover {
-  color: #fff;
-}
+
+/* Platform-specific selected styles */
+.platform-btn.youtube.selected { background: #ff0000; }
+.platform-btn.spotify.selected { background: #1db954; }
+.platform-btn.vk.selected { background: #4680c2; }
+.platform-btn.netflix.selected { background: #e50914; }
+.platform-btn.telegram.selected { background: #229ED9; }
+.platform-btn.twitch.selected { background: #9147ff; }
+.platform-btn.reddit.selected { background: #ff4500; }
+.platform-btn.facebook.selected { background: #1877f2; }
+.platform-btn.x.selected { background: #171a21; }
+.platform-btn.instagram.selected { background: #E1306C; }
+.platform-btn.tiktok.selected { background: #000; }
+.platform-btn.linkedin.selected { background: #0077b5; }
+.platform-btn.discord.selected { background: #5865F2; }
+.platform-btn.steam.selected { background: #000096; }
+.platform-btn.github.selected { background: #333; }
+.platform-btn.pinterest.selected { background: #E60023; }
+.platform-btn.soundcloud.selected { background: #FF5500; }
+.platform-btn.gitlab.selected { background: #FC6D26; }
+.platform-btn.whatsapp.selected { background: #25D366; }
+.platform-btn.messenger.selected { background: #0084FF; }
+.platform-btn.snapchat.selected { background: #FFFC00; color: #222; }
+.platform-btn.odnoklassniki.selected { background: #EE8208; }
+.platform-btn.yandexmusic.selected { background: #FFCC00; color: #222; }
+.platform-btn.dailymotion.selected { background: #0066DC; }
+.platform-btn.medium.selected { background: #00AB6C; }
+.platform-btn.tumblr.selected { background: #36465D; }
+
+/* Platform-specific hover styles */
 .platform-btn.youtube:hover { background: #ff0000; }
 .platform-btn.spotify:hover { background: #1db954; }
 .platform-btn.vk:hover { background: #4680c2; }
@@ -316,87 +155,68 @@ button[type="submit"]:focus {
 .platform-btn.discord:hover { background: #5865F2; }
 .platform-btn.steam:hover { background: #000096; }
 .platform-btn.github:hover { background: #333; }
-/* Новые платформы */
-.platform-btn.pinterest { border-color: #E60023; }
 .platform-btn.pinterest:hover { background: #E60023; }
-.platform-btn.soundcloud { border-color: #FF5500; }
 .platform-btn.soundcloud:hover { background: #FF5500; }
-.platform-btn.gitlab { border-color: #FC6D26; }
 .platform-btn.gitlab:hover { background: #FC6D26; }
-.platform-btn.whatsapp { border-color: #25D366; }
 .platform-btn.whatsapp:hover { background: #25D366; }
-.platform-btn.messenger { border-color: #0084FF; }
 .platform-btn.messenger:hover { background: #0084FF; }
-.platform-btn.snapchat { border-color: #FFFC00; color: #222; }
 .platform-btn.snapchat:hover { background: #FFFC00; color: #222; }
-.platform-btn.odnoklassniki { border-color: #EE8208; }
 .platform-btn.odnoklassniki:hover { background: #EE8208; }
-.platform-btn.yandexmusic { border-color: #FFCC00; color: #222; }
 .platform-btn.yandexmusic:hover { background: #FFCC00; color: #222; }
-.platform-btn.dailymotion { border-color: #0066DC; }
 .platform-btn.dailymotion:hover { background: #0066DC; }
-.platform-btn.medium { border-color: #00AB6C; }
 .platform-btn.medium:hover { background: #00AB6C; }
-.platform-btn.tumblr { border-color: #36465D; }
 .platform-btn.tumblr:hover { background: #36465D; }
-}
-.platform-btn.selected {
-  filter: brightness(0.7);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-}
-.platform-btn .platform-icon {
-  width: 28px;
-  height: 28px;
-  margin-right: 8px;
-  object-fit: contain;
+
+
+/* Next Button */
+.next-btn {
   background: none;
   border: none;
-  padding: 32px 64px;
-  font-size: 2rem;
-}
-/* Цвета для каждой платформы */
-/* Кнопки: белый фон, черный текст, обводка цвета платформы */
-.platform-btn { background: rgba(255,255,255,0.18); color: #222; border: 2px solid #eee; }
-.platform-btn.youtube { border-color: #ff0000; }
-.platform-btn.spotify { border-color: #1db954; }
-.platform-btn.vk { border-color: #4680c2; }
-.platform-btn.netflix { border-color: #e50914; }
-.platform-btn.telegram { border-color: #229ED9; }
-.platform-btn.twitch { border-color: #9147ff; }
-.platform-btn.reddit { border-color: #ff4500; }
-.platform-btn.facebook { border-color: #1877f2; }
-.platform-btn.twitter { border-color: #000; color: #000; }
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-  width: 80vw;
-  max-width: 1400px;
-  margin: 40px auto;
-  background: transparent;
-  padding: 48px;
-  border-radius: 24px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
-}
-h1 {
-  text-align: center;
-}
-button {
-  display: block;
-  margin: 20px auto 0;
-  padding: 28px 56px;
-  font-size: 1.7rem;
-  background: #0078d7;
-  color: #fff;
-  border: none;
-  border-radius: 18px;
+  color: #333;
+  font-size: 3rem;
+  font-weight: 700;
+  padding: 0 28px 0 0;
   cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px auto 0 auto;
+  transition: color 0.2s;
+  box-shadow: none;
 }
-button:hover {
-  background: #005fa3;
+
+.next-btn:hover,
+.next-btn:focus {
+  color: #000;
+  background: none;
+  box-shadow: none;
 }
+
+.next-btn-text, .next-btn-arrow {
+  transition: transform 0.18s cubic-bezier(.4,0,.2,1);
+}
+
+.next-btn:hover .next-btn-text,
+.next-btn:hover .next-btn-arrow {
+  transform: scale(1.15);
+}
+
+.next-btn-text {
+  color: #333;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-right: 12px;
+}
+
+.next-btn-arrow {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+}
+
+/* Recommendations section */
 #recommendations {
   margin-top: 32px;
 }

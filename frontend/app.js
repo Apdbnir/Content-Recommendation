@@ -1,6 +1,36 @@
+  // Эффект притяжения кнопок к курсору, пока курсор внутри платформенного окна
+  const platformWindow = document.querySelector('.platform-window');
+  platformWindow.addEventListener('mousemove', e => {
+    document.querySelectorAll('.platform-btn').forEach(btn => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - (rect.left + rect.width / 2);
+      const y = e.clientY - (rect.top + rect.height / 2);
+      const dist = Math.sqrt(x * x + y * y);
+      // Чем ближе курсор, тем сильнее притяжение (max 1, min 0.2)
+      const force = Math.max(1.2 - dist / 400, 0.2);
+      btn.style.transform = `translate(${x * 0.12 * force}px, ${y * 0.12 * force}px)`;
+    });
+  });
+  platformWindow.addEventListener('mouseleave', () => {
+    document.querySelectorAll('.platform-btn').forEach(btn => {
+      btn.style.transform = '';
+    });
+  });
+  // Эффект притяжения кнопки к курсору
+  document.querySelectorAll('.platform-btn').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.18}px, ${y * 0.18}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
 document.addEventListener('DOMContentLoaded', async () => {
   // Обработка кнопок выбора платформ (работает для всех)
-  // Новая логика: подсветка кнопок без чекбоксов
+  // Новая логика: подсветка кнопок без сортировки
   document.querySelectorAll('.platform-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       btn.classList.toggle('selected');
