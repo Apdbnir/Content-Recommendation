@@ -8,7 +8,10 @@
 </head>
 <body>
   <div class="container">
-    <h1>Выбор сервисов для рекомендаций</h1>
+  <div class="service-bar">
+    <span class="service-bar-title">Выбор сервисов</span>
+  </div>
+  <div class="platform-window">
     <form id="platformForm">
       <div id="platforms"></div>
       <div id="platformButtons" class="platform-buttons">
@@ -39,10 +42,16 @@
   <button type="button" class="platform-btn linkedin" data-platform="LinkedIn">LinkedIn</button>
   <button type="button" class="platform-btn discord" data-platform="Discord">Discord</button>
       </div>
-      <div id="platformsHint" style="margin: 10px 0; color: #555;">
-        Выберите одну или несколько платформ для получения рекомендаций
-      <button type="submit">Далее</button>
+      <!-- platformsHint удалён по запросу -->
+      <button type="submit" class="next-btn">
+        <span class="next-btn-text">Далее</span>
+        <svg class="next-btn-arrow" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
+          <path d="M10 22H34" stroke="#f72585" stroke-width="8" stroke-linecap="round"/>
+          <path d="M28 16L34 22L28 28" stroke="#f72585" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </form>
+  </div>
     <div id="userDataSection" style="display:none;"></div>
     <div id="recommendationsSection" style="display:none;"></div>
   </div>

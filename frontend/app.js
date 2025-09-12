@@ -1,23 +1,9 @@
 document.addEventListener('DOMContentLoaded', async () => {
   // Обработка кнопок выбора платформ (работает для всех)
-  function updatePlatformButtons() {
-    document.querySelectorAll('.platform-btn').forEach(btn => {
-      const platform = btn.getAttribute('data-platform');
-      const checkbox = document.querySelector(`input[name="platform"][value="${platform}"]`);
-      if (checkbox) {
-        btn.classList.toggle('selected', checkbox.checked);
-      }
-    });
-  }
-
+  // Новая логика: подсветка кнопок без чекбоксов
   document.querySelectorAll('.platform-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const platform = btn.getAttribute('data-platform');
-      const checkbox = document.querySelector(`input[name="platform"][value="${platform}"]`);
-      if (checkbox) {
-        checkbox.checked = !checkbox.checked;
-        updatePlatformButtons();
-      }
+      btn.classList.toggle('selected');
     });
   });
   const startForm = document.getElementById('startForm');

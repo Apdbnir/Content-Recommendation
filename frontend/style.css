@@ -1,3 +1,152 @@
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8e8ff 0%, #ffe5ec 18%, #ffd6e0 32%, #e0f7fa 48%, #c1f7ff 65%, #d0f5c7 80%, #fff7c0 90%, #ffe5ec 100%);
+  background-size: 400% 400%;
+  animation: pastelGradientFlow 18s ease-in-out infinite;
+}
+
+@keyframes pastelGradientFlow {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 80%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 20%; }
+  100% { background-position: 0% 50%; }
+}
+.next-btn-text, .next-btn-arrow {
+  transition: transform 0.18s cubic-bezier(.4,0,.2,1);
+}
+.next-btn:hover .next-btn-text,
+.next-btn:hover .next-btn-arrow {
+  transform: scale(1.15);
+}
+.next-btn-arrow {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+}
+.next-btn {
+  background: none;
+  border: none;
+  color: #f72585;
+  font-size: 3rem;
+  font-weight: 700;
+  padding: 0 28px 0 0;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px auto 0 auto;
+  transition: color 0.2s;
+  box-shadow: none;
+}
+.next-btn-text {
+  color: #f72585;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-right: 12px;
+}
+.next-btn-arrow {
+  display: inline-block;
+  vertical-align: middle;
+}
+.next-btn:hover,
+.next-btn:focus {
+  color: #f72585;
+  background: none;
+  box-shadow: none;
+}
+/* Кнопка Далее прозрачная, только текст и стрелка */
+button[type="submit"] {
+  background: none;
+  border: none;
+  color: #f72585;
+  font-size: 3rem;
+  font-weight: 700;
+  padding: 0 28px 0 0;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px auto 0 auto;
+  transition: color 0.2s;
+  box-shadow: none;
+}
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+  color: #f72585;
+  background: none;
+  box-shadow: none;
+}
+.platform-btn.selected {
+  background: linear-gradient(90deg, #ffb86c 0%, #f72585 50%, #7209b7 100%);
+  color: #fff;
+  border: 2px solid #f72585;
+  box-shadow: 0 6px 24px rgba(247,37,133,0.18), 0 2px 8px rgba(255,184,108,0.12);
+  opacity: 1;
+}
+.platform-btn.selected {
+  background: linear-gradient(90deg, #ffb86c 0%, #f72585 50%, #7209b7 100%);
+  color: #fff;
+  border: 2px solid #f72585;
+  box-shadow: 0 6px 24px rgba(247,37,133,0.18), 0 2px 8px rgba(255,184,108,0.12);
+  opacity: 1;
+}
+ .service-bar-title {
+  color: #fff;
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  user-select: none;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  margin-top: -18px;
+}
+}
+}
+.platform-window {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 32px auto;
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+  padding: 32px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.service-bar {
+  width: 100%;
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;
+  padding-right: 12px;
+  height: 120px;
+  margin: 32px auto 24px auto;
+  border-radius: 40px;
+  background:
+    radial-gradient(circle at 20% 60%, #ff5e62 0%, #f72585 30%, transparent 60%),
+    radial-gradient(circle at 80% 30%, #ffb86c 0%, #b5179e 40%, transparent 70%),
+    linear-gradient(120deg, #7209b7 0%, #f72585 40%, #ffb86c 80%),
+    linear-gradient(300deg, #3a0ca3 0%, #ff5e62 60%, #b5179e 100%),
+    repeating-linear-gradient(45deg, #ff5e62, #f72585 10%, #b5179e 20%, #ffb86c 30%, #7209b7 40%, #3a0ca3 50%);
+    background: rgba(255,255,255,0.15);
+  background-size: cover;
+  /* animation убрана, полоска статична */
+  box-shadow: 0 4px 16px rgba(255,94,98,0.10), 0 2px 8px rgba(255,153,102,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@keyframes serviceBarCosmicFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 .platform-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -11,8 +160,77 @@
   padding-right: 12px;
   box-sizing: border-box;
 }
+.platform-btn {
   border: 2px solid #eee;
-  background: #fff;
+  background: transparent;
+  color: #222;
+  border-radius: 40px;
+  padding: 22px 44px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+  outline: none;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.02em;
+  opacity: 0.98;
+  animation: btnFadeIn 0.7s cubic-bezier(.4,0,.2,1);
+}
+@keyframes btnFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 0.96; transform: scale(1); }
+}
+.platform-window {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 32px auto;
+    background: rgba(255,255,255,0.10);
+  border-radius: 32px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+  padding: 32px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ .service-bar {
+  width: 100%;
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;
+  padding-right: 12px;
+  height: 120px;
+  margin: 32px auto 24px auto;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #3a0ca3 0%, #7209b7 25%, #b5179e 50%, #f72585 75%, #ff5e62 100%);
+  background-size: 200% 200%;
+  animation: serviceBarCosmicFlow 8s ease-in-out infinite;
+@keyframes serviceBarCosmicFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+  box-shadow: 0 4px 16px rgba(255,94,98,0.10), 0 2px 8px rgba(255,153,102,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.platform-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 20px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;
+  padding-right: 12px;
+.platform-btn {
+  border: 2px solid #eee;
+    background: #fff;
   color: #222;
   border-radius: 40px;
   padding: 22px 44px;
@@ -40,13 +258,12 @@
   padding-left: 12px;
   padding-right: 12px;
   box-sizing: border-box;
-}
   outline: none;
   position: relative;
   z-index: 1;
   letter-spacing: 0.02em;
   opacity: 0.96;
-}
+/* removed stray closing brace */
 .platform-btn:active {
   transform: scale(0.97);
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
@@ -139,7 +356,7 @@
 }
 /* Цвета для каждой платформы */
 /* Кнопки: белый фон, черный текст, обводка цвета платформы */
-.platform-btn { background: #fff; color: #222; border: 2px solid #eee; }
+.platform-btn { background: rgba(255,255,255,0.18); color: #222; border: 2px solid #eee; }
 .platform-btn.youtube { border-color: #ff0000; }
 .platform-btn.spotify { border-color: #1db954; }
 .platform-btn.vk { border-color: #4680c2; }
@@ -158,7 +375,7 @@ body {
   width: 80vw;
   max-width: 1400px;
   margin: 40px auto;
-  background: #fff;
+  background: transparent;
   padding: 48px;
   border-radius: 24px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.12);
