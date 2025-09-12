@@ -1,0 +1,202 @@
+.platform-btn .platform-icon {
+  display: inline-block;
+  .platform-btn {
+    border: 2px solid #eee;
+    background: #fff;
+    color: #222;
+    border-radius: 32px;
+    padding: 10px 18px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.08);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+    outline: none;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.01em;
+    opacity: 0.98;
+    animation: btnFadeIn 0.7s cubic-bezier(.4,0,.2,1);
+  }
+  .platform-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+  }
+    opacity: 1;
+  }
+  @keyframes btnFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 0.96; transform: scale(1); }
+  }
+  .platform-btn .platform-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+    object-fit: contain;
+    background: none;
+    border: none;
+    padding: 32px 64px;
+    font-size: 2rem;
+  }
+  button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 28px 56px;
+    font-size: 1.7rem;
+    background: #0078d7;
+    color: #fff;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+  }
+  outline: none;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.02em;
+  opacity: 0.96;
+}
+.platform-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  opacity: 0.92;
+}
+.platform-btn:hover {
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.16), 0 2px 8px rgba(0,0,0,0.10);
+  transform: scale(1.04);
+  opacity: 1;
+}
+.platform-btn {
+  animation: btnFadeIn 0.7s cubic-bezier(.4,0,.2,1);
+}
+@keyframes btnFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 0.96; transform: scale(1); }
+}
+}
+.platform-btn.youtube { border-color: #ff0000; }
+.platform-btn.spotify { border-color: #1db954; }
+.platform-btn.vk { border-color: #4680c2; }
+.platform-btn.netflix { border-color: #e50914; }
+.platform-btn.telegram { border-color: #229ED9; }
+.platform-btn.twitch { border-color: #9147ff; }
+.platform-btn.reddit { border-color: #ff4500; }
+.platform-btn.facebook { border-color: #1877f2; }
+.platform-btn.x { border-color: #171a21; }
+.platform-btn.instagram { border-color: #E1306C; }
+.platform-btn.tiktok { border-color: #000; }
+.platform-btn.linkedin { border-color: #0077b5; }
+.platform-btn.discord { border-color: #5865F2; }
+.platform-btn.steam { border-color: #000096; }
+.platform-btn.github { border-color: #333; }
+.platform-btn:hover {
+  color: #fff;
+}
+.platform-btn.youtube:hover { background: #ff0000; }
+.platform-btn.spotify:hover { background: #1db954; }
+.platform-btn.vk:hover { background: #4680c2; }
+.platform-btn.netflix:hover { background: #e50914; }
+.platform-btn.telegram:hover { background: #229ED9; }
+.platform-btn.twitch:hover { background: #9147ff; }
+.platform-btn.reddit:hover { background: #ff4500; }
+.platform-btn.facebook:hover { background: #1877f2; }
+.platform-btn.x:hover { background: #171a21; }
+.platform-btn.instagram:hover { background: #E1306C; }
+.platform-btn.tiktok:hover { background: #000; }
+.platform-btn.linkedin:hover { background: #0077b5; }
+.platform-btn.discord:hover { background: #5865F2; }
+.platform-btn.steam:hover { background: #000096; }
+.platform-btn.github:hover { background: #333; }
+/* Новые платформы */
+.platform-btn.pinterest { border-color: #E60023; }
+.platform-btn.pinterest:hover { background: #E60023; }
+.platform-btn.soundcloud { border-color: #FF5500; }
+.platform-btn.soundcloud:hover { background: #FF5500; }
+.platform-btn.gitlab { border-color: #FC6D26; }
+.platform-btn.gitlab:hover { background: #FC6D26; }
+.platform-btn.whatsapp { border-color: #25D366; }
+.platform-btn.whatsapp:hover { background: #25D366; }
+.platform-btn.messenger { border-color: #0084FF; }
+.platform-btn.messenger:hover { background: #0084FF; }
+.platform-btn.snapchat { border-color: #FFFC00; color: #222; }
+.platform-btn.snapchat:hover { background: #FFFC00; color: #222; }
+.platform-btn.odnoklassniki { border-color: #EE8208; }
+.platform-btn.odnoklassniki:hover { background: #EE8208; }
+.platform-btn.yandexmusic { border-color: #FFCC00; color: #222; }
+.platform-btn.yandexmusic:hover { background: #FFCC00; color: #222; }
+.platform-btn.dailymotion { border-color: #0066DC; }
+.platform-btn.dailymotion:hover { background: #0066DC; }
+.platform-btn.medium { border-color: #00AB6C; }
+.platform-btn.medium:hover { background: #00AB6C; }
+.platform-btn.tumblr { border-color: #36465D; }
+.platform-btn.tumblr:hover { background: #36465D; }
+}
+.platform-btn.selected {
+  filter: brightness(0.7);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+.platform-btn .platform-icon {
+  width: 28px;
+  height: 28px;
+  margin-right: 8px;
+  object-fit: contain;
+  background: none;
+  border: none;
+  padding: 32px 64px;
+  font-size: 2rem;
+}
+/* Цвета для каждой платформы */
+/* Кнопки: белый фон, черный текст, обводка цвета платформы */
+.platform-btn { background: #fff; color: #222; border: 2px solid #eee; }
+.platform-btn.youtube { border-color: #ff0000; }
+.platform-btn.spotify { border-color: #1db954; }
+.platform-btn.vk { border-color: #4680c2; }
+.platform-btn.netflix { border-color: #e50914; }
+.platform-btn.telegram { border-color: #229ED9; }
+.platform-btn.twitch { border-color: #9147ff; }
+.platform-btn.reddit { border-color: #ff4500; }
+.platform-btn.facebook { border-color: #1877f2; }
+.platform-btn.twitter { border-color: #000; color: #000; }
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+  width: 80vw;
+  max-width: 1400px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 48px;
+  border-radius: 24px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+}
+h1 {
+  text-align: center;
+}
+button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 28px 56px;
+  font-size: 1.7rem;
+  background: #0078d7;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+}
+button:hover {
+  background: #005fa3;
+}
+#recommendations {
+  margin-top: 32px;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Recommendation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Выбор сервисов для рекомендаций</h1>
+    <form id="platformForm">
+      <div id="platforms"></div>
+      <div id="platformButtons" class="platform-buttons">
+    <button type="button" class="platform-btn youtube" data-platform="YouTube">YouTube</button>
+    <button type="button" class="platform-btn spotify" data-platform="Spotify">Spotify</button>
+    <button type="button" class="platform-btn vk" data-platform="VK">VK</button>
+    <button type="button" class="platform-btn netflix" data-platform="Netflix">Netflix</button>
+    <button type="button" class="platform-btn telegram" data-platform="Telegram">Telegram</button>
+    <button type="button" class="platform-btn twitch" data-platform="Twitch">Twitch</button>
+    <button type="button" class="platform-btn reddit" data-platform="Reddit">Reddit</button>
+    <button type="button" class="platform-btn facebook" data-platform="Facebook">Facebook</button>
+  <button type="button" class="platform-btn x" data-platform="X">X</button>
+  <button type="button" class="platform-btn instagram" data-platform="Instagram">Instagram</button>
+  <button type="button" class="platform-btn steam" data-platform="Steam">Steam</button>
+  <button type="button" class="platform-btn github" data-platform="GitHub">GitHub</button>
+  <button type="button" class="platform-btn pinterest" data-platform="Pinterest">Pinterest</button>
+  <button type="button" class="platform-btn soundcloud" data-platform="SoundCloud">SoundCloud</button>
+  <button type="button" class="platform-btn gitlab" data-platform="GitLab">GitLab</button>
+  <button type="button" class="platform-btn whatsapp" data-platform="WhatsApp">WhatsApp</button>
+  <button type="button" class="platform-btn messenger" data-platform="Messenger">Messenger</button>
+  <button type="button" class="platform-btn snapchat" data-platform="Snapchat">Snapchat</button>
+  <button type="button" class="platform-btn tiktok" data-platform="TikTok">TikTok</button>
+  <button type="button" class="platform-btn odnoklassniki" data-platform="Odnoklassniki">Odnoklassniki</button>
+  <button type="button" class="platform-btn yandexmusic" data-platform="Яндекс.Музыка">Яндекс.Музыка</button>
+  <button type="button" class="platform-btn dailymotion" data-platform="Dailymotion">Dailymotion</button>
+  <button type="button" class="platform-btn medium" data-platform="Medium">Medium</button>
+  <button type="button" class="platform-btn tumblr" data-platform="Tumblr">Tumblr</button>
+  <button type="button" class="platform-btn linkedin" data-platform="LinkedIn">LinkedIn</button>
+  <button type="button" class="platform-btn discord" data-platform="Discord">Discord</button>
+      </div>
+      <div id="platformsHint" style="margin: 10px 0; color: #555;">
+        Выберите одну или несколько платформ для получения рекомендаций
+      <button type="submit">Далее</button>
+    </form>
+    <div id="userDataSection" style="display:none;"></div>
+    <div id="recommendationsSection" style="display:none;"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
