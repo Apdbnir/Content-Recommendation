@@ -1,0 +1,772 @@
+/* Main page - Pinterest-style Feed */
+.content {
+    padding: 20px;
+    background-color: transparent; /* Transparent to match site background */
+}
+
+/* Search Container */
+.search-container {
+    margin-top: 60px; /* Added top margin to position it lower */
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 10;
+    background: transparent;
+    padding: 15px;
+    border-radius: 16px;
+    box-shadow: none;
+    backdrop-filter: none;
+    transition: all 0.3s ease;
+}
+
+.search-container.active {
+    position: sticky;
+    top: 20px;
+}
+
+.search-bar-wrapper {
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    flex: 1;
+    width: 100%;
+    padding: 12px 20px 12px 45px; /* Increased left padding to make room for search icon */
+    font-size: 1rem; /* Normal font size */
+    border: 2px solid rgba(200, 200, 200, 0.6); /* Softer border */
+    border-radius: 25px; /* Normal border-radius, not too rounded */
+    outline: none;
+    transition: all 0.3s ease;
+    background: rgba(250, 250, 250, 0.7); /* Softer background */
+    color: #333; /* Softer text color */
+}
+
+/* Gradient animation for loading state */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.search-input.loading {
+    background: linear-gradient(90deg, #ff4500, #ff8c00, #ffd700, #ff4500);
+    background-size: 400% 400%;
+    animation: gradientShift 6s ease infinite;
+    border-color: #ff4500;
+    color: #333;
+}
+
+.search-button {
+    position: absolute;
+    left: 12px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #767676;
+    cursor: pointer;
+    z-index: 1;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-input:focus {
+    border-color: rgba(161, 196, 253, 0.5); /* Softer focus border */
+    box-shadow: 0 0 0 3px rgba(161, 196, 253, 0.2); /* Softer focus shadow */
+}
+
+.search-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.search-suggestions .suggestion-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.search-suggestions .suggestion-item:hover {
+    background-color: #f5f5f5;
+}
+
+.search-suggestions .suggestion-item:last-child {
+    border-bottom: none;
+}
+
+/* Search History */
+.search-history {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.search-history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+.history-toggle {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.search-history.collapsed .history-toggle {
+    transform: rotate(-90deg);
+}
+
+.history-items {
+    max-height: 200px;
+    overflow-y: auto;
+    transition: max-height 0.3s ease;
+}
+
+.search-history.collapsed .history-items {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.history-item {
+    padding: 8px 15px;
+    margin: 5px 0;
+    background: #f8f9fa;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.history-item:hover {
+    background: #e9ecef;
+}
+
+
+
+.no-results-message {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.no-results-message h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.feed {
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.feed-item {
+    flex: 0 0 calc(20% - 20px); /* 5 items per row (with gap) */
+    min-width: 200px; /* Minimum width for responsiveness */
+    margin-bottom: 0; /* Remove bottom margin since using gap */
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(240, 240, 240, 0.6); /* Softer background color */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.feed-item:hover {
+    transform: translateY(-8px);
+    background: rgba(255,255,255, 0.8); /* Softer hover background */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Softer hover shadow */
+}
+
+/* Loading placeholder styles */
+.feed-item.placeholder {
+    background: linear-gradient(90deg, #e8e8e8 25%, #d8d8d8 50%, #e8e8e8 75%); /* Softer gradient */
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    height: 300px;
+    min-height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.feed-item.placeholder:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Softer shadow on hover */
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.feed-item.placeholder .item-wrapper {
+    height: 300px;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.feed-item.placeholder .item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 20px 15px 15px;
+    color: white;
+    border-radius: 0 0 16px 16px;
+}
+
+.feed-item.placeholder .item-content {
+    padding: 15px;
+}
+
+.feed-item.placeholder .item-title {
+    height: 15px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.feed-item.placeholder .item-author {
+    display: flex;
+    align-items: center;
+}
+
+.feed-item.placeholder .author-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    margin-right: 8px;
+}
+
+.feed-item.placeholder .author-name {
+    height: 12px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 4px;
+    flex: 1;
+}
+
+/* Platform-specific gradient backgrounds for loading placeholders */
+.feed-item.placeholder[data-platform="YouTube"] {
+    background: linear-gradient(90deg, #ff0000, #cc0000, #ff0000);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Spotify"] {
+    background: linear-gradient(90deg, #1db954, #1ed760, #1db954);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Netflix"] {
+    background: linear-gradient(90deg, #e50914, #f00, #e50914);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Instagram"] {
+    background: linear-gradient(90deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Facebook"] {
+    background: linear-gradient(90deg, #1877f2, #0e5dc4, #1877f2);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="X"] {
+    background: linear-gradient(90deg, #000, #333, #000);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Reddit"] {
+    background: linear-gradient(90deg, #ff4500, #cc3700, #ff4500);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="GitHub"] {
+    background: linear-gradient(90deg, #333, #444, #333);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="LinkedIn"] {
+    background: linear-gradient(90deg, #0077b5, #00a0dc, #0077b5);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Warhammer"] {
+    background: linear-gradient(90deg, #8B0000, #A52A2A, #8B0000);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="VK"] {
+    background: linear-gradient(90deg, #45668e, #5a7fb4, #45668e);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Telegram"] {
+    background: linear-gradient(90deg, #0088cc, #0099e6, #0088cc);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Twitch"] {
+    background: linear-gradient(90deg, #9146ff, #a970ff, #9146ff);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Pinterest"] {
+    background: linear-gradient(90deg, #bd081c, #e60023, #bd081c);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="SoundCloud"] {
+    background: linear-gradient(90deg, #ff8800, #ff9933, #ff8800);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="GitLab"] {
+    background: linear-gradient(90deg, #fc6d26, #fd7e36, #fc6d26);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="WhatsApp"] {
+    background: linear-gradient(90deg, #25d366, #33cc66, #25d366);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Messenger"] {
+    background: linear-gradient(90deg, #0084ff, #339dff, #0084ff);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Snapchat"] {
+    background: linear-gradient(90deg, #fffc00, #fffd33, #fffc00);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Odnoklassniki"] {
+    background: linear-gradient(90deg, #ee8208, #ff8c00, #ee8208);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="YandexMusic"] {
+    background: linear-gradient(90deg, #ff0000, #cc0000, #ff0000);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Dailymotion"] {
+    background: linear-gradient(90deg, #00aaff, #33bbff, #00aaff);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Medium"] {
+    background: linear-gradient(90deg, #00ab6c, #00cc88, #00ab6c);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Tumblr"] {
+    background: linear-gradient(90deg, #35465c, #465a72, #35465c);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="AppleMusic"] {
+    background: linear-gradient(90deg, #fa233b, #ff3344, #fa233b);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="PrimeVideo"] {
+    background: linear-gradient(90deg, #00a8e1, #00bfff, #00a8e1);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Goodreads"] {
+    background: linear-gradient(90deg, #372213, #5a3a22, #372213);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Quora"] {
+    background: linear-gradient(90deg, #aa2200, #cc3300, #aa2200);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feed-item.placeholder[data-platform="Behance"] {
+    background: linear-gradient(90deg, #1769ff, #3377ff, #1769ff);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+/* Default placeholder style */
+.feed-item.placeholder:not([data-platform]) {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.item-wrapper {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+}
+
+.item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 20px 15px 15px;
+    color: white;
+    border-radius: 0 0 16px 16px;
+}
+
+.item-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.feed-item .item-content {
+    padding: 15px;
+}
+
+.feed-item .item-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.item-wrapper .item-title {
+    color: white;
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+}
+
+.item-wrapper .item-author {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.feed-item .item-author {
+    font-size: 0.85rem;
+    color: #767676;
+    display: flex;
+    align-items: center;
+}
+
+.feed-item .author-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.item-wrapper .author-avatar {
+    filter: brightness(0) invert(1); /* Makes avatar white for better visibility on dark overlay */
+}
+
+.platform-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.connect-platform-btn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: #a1c4fd;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.connect-platform-btn:hover {
+    background: #6b9eff;
+}
+
+.error-content {
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: 16px;
+    margin: 10px;
+}
+
+.loading-message {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.loading-message p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.no-platforms-message {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    grid-column: 1 / -1;
+}
+
+.no-platforms-message h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .feed-item {
+        flex: 0 0 calc(25% - 20px); /* 4 items per row */
+    }
+}
+
+@media (max-width: 992px) {
+    .feed-item {
+        flex: 0 0 calc(33.333% - 20px); /* 3 items per row */
+    }
+}
+
+@media (max-width: 768px) {
+    .feed-item {
+        flex: 0 0 calc(50% - 20px); /* 2 items per row */
+    }
+}
+
+@media (max-width: 576px) {
+    .feed-item {
+        flex: 0 0 100%; /* 1 item per row */
+    }
+}
+
+/* Platform-specific styles for feed items with stronger gradients */
+.feed-item[data-platform="YouTube"] {
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.3), rgba(204, 0, 0, 0.1));
+}
+
+.feed-item[data-platform="Spotify"] {
+    background: linear-gradient(135deg, rgba(29, 185, 84, 0.3), rgba(30, 215, 96, 0.1));
+}
+
+.feed-item[data-platform="Netflix"] {
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.3), rgba(240, 0, 0, 0.1));
+}
+
+.feed-item[data-platform="Instagram"] {
+    background: linear-gradient(135deg, rgba(64, 93, 230, 0.3), rgba(88, 81, 219, 0.1), rgba(135, 58, 182, 0.1), rgba(255, 170, 86, 0.1));
+}
+
+.feed-item[data-platform="Facebook"] {
+    background: linear-gradient(135deg, rgba(24, 119, 242, 0.3), rgba(14, 93, 196, 0.1));
+}
+
+.feed-item[data-platform="X"] {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(51, 51, 51, 0.1));
+}
+
+.feed-item[data-platform="Reddit"] {
+    background: linear-gradient(135deg, rgba(255, 69, 0, 0.3), rgba(204, 55, 0, 0.1));
+}
+
+.feed-item[data-platform="GitHub"] {
+    background: linear-gradient(135deg, rgba(51, 51, 51, 0.3), rgba(68, 68, 68, 0.1));
+}
+
+.feed-item[data-platform="LinkedIn"] {
+    background: linear-gradient(135deg, rgba(0, 119, 181, 0.3), rgba(0, 160, 220, 0.1));
+}
+
+.feed-item[data-platform="Warhammer"] {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.3), rgba(165, 42, 42, 0.1));
+}
+
+.feed-item[data-platform="VK"] {
+    background: linear-gradient(135deg, rgba(69, 102, 142, 0.3), rgba(90, 127, 180, 0.1));
+}
+
+.feed-item[data-platform="Telegram"] {
+    background: linear-gradient(135deg, rgba(0, 136, 204, 0.3), rgba(0, 153, 230, 0.1));
+}
+
+.feed-item[data-platform="Twitch"] {
+    background: linear-gradient(135deg, rgba(145, 70, 255, 0.3), rgba(169, 112, 255, 0.1));
+}
+
+.feed-item[data-platform="Pinterest"] {
+    background: linear-gradient(135deg, rgba(189, 8, 28, 0.3), rgba(222, 0, 35, 0.1));
+}
+
+.feed-item[data-platform="SoundCloud"] {
+    background: linear-gradient(135deg, rgba(255, 136, 0, 0.3), rgba(255, 153, 51, 0.1));
+}
+
+.feed-item[data-platform="GitLab"] {
+    background: linear-gradient(135deg, rgba(252, 109, 38, 0.3), rgba(253, 126, 54, 0.1));
+}
+
+.feed-item[data-platform="WhatsApp"] {
+    background: linear-gradient(135deg, rgba(37, 211, 102, 0.3), rgba(51, 204, 102, 0.1));
+}
+
+.feed-item[data-platform="Messenger"] {
+    background: linear-gradient(135deg, rgba(0, 132, 255, 0.3), rgba(51, 157, 255, 0.1));
+}
+
+.feed-item[data-platform="Snapchat"] {
+    background: linear-gradient(135deg, rgba(255, 252, 0, 0.3), rgba(255, 253, 51, 0.1));
+}
+
+.feed-item[data-platform="Odnoklassniki"] {
+    background: linear-gradient(135deg, rgba(238, 130, 8, 0.3), rgba(255, 140, 0, 0.1));
+}
+
+.feed-item[data-platform="YandexMusic"] {
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.3), rgba(204, 0, 0, 0.1));
+}
+
+.feed-item[data-platform="Dailymotion"] {
+    background: linear-gradient(135deg, rgba(0, 170, 255, 0.3), rgba(51, 187, 255, 0.1));
+}
+
+.feed-item[data-platform="Medium"] {
+    background: linear-gradient(135deg, rgba(0, 171, 108, 0.3), rgba(0, 204, 136, 0.1));
+}
+
+.feed-item[data-platform="Tumblr"] {
+    background: linear-gradient(135deg, rgba(53, 70, 92, 0.3), rgba(70, 90, 114, 0.1));
+}
+
+.feed-item[data-platform="AppleMusic"] {
+    background: linear-gradient(135deg, rgba(250, 35, 59, 0.3), rgba(255, 51, 68, 0.1));
+}
+
+.feed-item[data-platform="PrimeVideo"] {
+    background: linear-gradient(135deg, rgba(0, 168, 225, 0.3), rgba(0, 191, 255, 0.1));
+}
+
+.feed-item[data-platform="Goodreads"] {
+    background: linear-gradient(135deg, rgba(55, 34, 19, 0.3), rgba(90, 58, 34, 0.1));
+}
+
+.feed-item[data-platform="Quora"] {
+    background: linear-gradient(135deg, rgba(170, 34, 0, 0.3), rgba(204, 51, 0, 0.1));
+}
+
+.feed-item[data-platform="Behance"] {
+    background: linear-gradient(135deg, rgba(23, 105, 255, 0.3), rgba(51, 119, 255, 0.1));
+}
+
+/* Additional platform classes for more comprehensive styling */
+.feed-item.platform-youtube {
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.3), rgba(204, 0, 0, 0.1));
+}
+
+.feed-item.platform-spotify {
+    background: linear-gradient(135deg, rgba(29, 185, 84, 0.3), rgba(30, 215, 96, 0.1));
+}
+
+.feed-item.platform-netflix {
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.3), rgba(240, 0, 0, 0.1));
+}
+
+.feed-item.platform-instagram {
+    background: linear-gradient(135deg, rgba(64, 93, 230, 0.3), rgba(88, 81, 219, 0.1), rgba(135, 58, 182, 0.1), rgba(255, 170, 86, 0.1));
+}
+
+.feed-item.platform-facebook {
+    background: linear-gradient(135deg, rgba(24, 119, 242, 0.3), rgba(14, 93, 196, 0.1));
+}
+
+.feed-item.platform-x {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(51, 51, 51, 0.1));
+}
+
+.feed-item.platform-twitter {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(51, 51, 51, 0.1));
+}
+
+.feed-item.platform-reddit {
+    background: linear-gradient(135deg, rgba(255, 69, 0, 0.3), rgba(204, 55, 0, 0.1));
+}
+
+.feed-item.platform-github {
+    background: linear-gradient(135deg, rgba(51, 51, 51, 0.3), rgba(68, 68, 68, 0.1));
+}
+
+.feed-item.platform-linkedin {
+    background: linear-gradient(135deg, rgba(0, 119, 181, 0.3), rgba(0, 160, 220, 0.1));
+}
+
+/* Default feed item style */
+.feed-item:not([data-platform]):not([class*="platform-"]) {
+    background: rgba(240, 240, 240, 0.6); /* Softer default background */
+}
