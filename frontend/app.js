@@ -359,15 +359,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const profileDropdown = document.getElementById('profileDropdown');
     
     if (profileIcon) {
-        // Click on the icon itself (not the dropdown) to go to profile
+        // Click on the icon itself (not the dropdown) to navigate based on current page
         profileIcon.addEventListener('click', (e) => {
-            // If the click is on the icon part (not the dropdown), navigate to profile
+            // If the click is on the icon part (not the dropdown), handle navigation
             if (e.target.closest('.profile-icon') === profileIcon && !e.target.closest('.profile-dropdown')) {
                 // Check if user is authenticated
                 const isAuthenticated = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
                 
-                if (isAuthenticated) {
-                    // Navigate to profile page
+                // Check if we're currently on the profile page
+                const isOnProfilePage = window.location.pathname.includes('profile.html');
+                
+                if (isOnProfilePage) {
+                    // If on profile page, go back to previous page
+                    window.history.back();
+                } else if (isAuthenticated) {
+                    // If not on profile page and authenticated, go to profile page
                     window.location.href = 'profile.html';
                 } else {
                     // If not authenticated, redirect to login
