@@ -1,14 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* CSS Variables for theming */
+:root {
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --accent-color: #a1c4fd;
+  --header-color: #f8f9fa;
+  --footer-color: #e9ecef;
+  --card-background-color: #ffffff;
+  --main-font: 'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif;
+  --font-size: 16px;
+  --header-font: 'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif;
+  --link-color: #007bff;
+  --button-color: #a1c4fd;
+  --button-text-color: #ffffff;
+}
 
 /* General Body Styles */
 body {
-  font-family: 'Nunito', 'Segoe UI', Arial, sans-serif;
+  font-family: var(--main-font);
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, var(--accent-color), #c2e9fb);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
+  overflow-x: hidden; /* Prevent horizontal scrollbars from animations */
+  color: var(--text-color);
+  font-size: var(--font-size);
+  background-color: var(--background-color);
 }
 
 @keyframes gradientBG {
@@ -36,6 +56,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* ADDED: Properties for smooth animation */
+  position: relative;
+  transition: transform 0.8s ease-out;
 }
 
 .service-bar-title {
@@ -46,14 +69,14 @@ body {
   text-shadow: none;
   user-select: none;
   margin-top: -18px;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', 'Poppins', sans-serif;
 }
 
 /* Platform Selection Area */
 .platform-window {
   width: 100%;
   max-width: 1400px;
-  margin: 0 auto 32px auto;
+  margin: 100px auto 32px auto;
   background: rgba(255,255,255,0.10);
   border-radius: 32px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.10);
@@ -76,12 +99,34 @@ body {
   min-height: 400px; /* Ensure container has height for animation */
 }
 
+/* --- NEW ANIMATION STYLES --- */
+
+/* Floating animation keyframes (copied from start.css) */
+@keyframes floatAnimation {
+    0% { transform: translate(0, 0); }
+    15% { transform: translate(-25px, 20px); }
+    30% { transform: translate(30px, -25px); }
+    45% { transform: translate(20px, 35px); }
+    60% { transform: translate(-35px, -15px); }
+    75% { transform: translate(-10px, -30px); }
+    90% { transform: translate(25px, 15px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Class to apply the floating animation */
+.floating {
+    animation: floatAnimation 18s ease-in-out infinite;
+}
+
+/* --- END NEW ANIMATION STYLES --- */
+
+
 /* Platform Buttons */
 .platform-btn {
   background: rgba(255,255,255,0.85);
   color: #222;
   font-size: 1.3rem;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', 'Poppins', sans-serif;
   font-weight: 600;
   border: none;
   border-radius: 40px;
@@ -89,17 +134,12 @@ body {
   margin: 18px 16px;
   cursor: pointer;
   box-shadow: 0 6px 32px 0 rgba(255,255,255,0.7), 0 2px 8px 0 rgba(127, 83, 172, 0.18);
-  transition: transform 0.3s ease-in-out, box-shadow 0.2s, background 0.3s;
+  /* MODIFIED: Added transition for smooth return */
+  transition: transform 0.8s ease-out, box-shadow 0.2s, background 0.3s;
   outline: none;
   position: relative;
   z-index: 1;
   letter-spacing: 0.02em;
-  animation: btnFadeIn 0.7s cubic-bezier(.4,0,.2,1);
-}
-
-@keyframes btnFadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
 }
 
 .platform-btn:hover {
@@ -192,15 +232,16 @@ body {
   color: #333;
   font-size: 3rem;
   font-weight: 700;
-  font-family: 'Nunito', sans-serif;
-  padding: 0 28px 0 0;
+  font-family: 'Nunito', 'Poppins', sans-serif;
+  padding: 0;
   cursor: pointer;
   outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 16px auto 0 auto;
-  transition: color 0.2s;
+  /* MODIFIED: Added transition for smooth return */
+  transition: color 0.2s, transform 0.8s ease-out;
   box-shadow: none;
 }
 
@@ -224,7 +265,7 @@ body {
   color: #333;
   font-size: 3rem;
   font-weight: 700;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', 'Poppins', sans-serif;
   margin-right: 12px;
 }
 
@@ -235,7 +276,354 @@ body {
   top: 3px;
 }
 
+/* --- NEW ERROR MESSAGE STYLE --- */
+.error-message {
+  color: #D32F2F; /* A nice, strong red */
+  font-family: 'Nunito', 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  height: 25px; /* Reserve space to prevent layout shifts */
+  margin-bottom: 10px;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* Info content styling */
+.info-content {
+  padding: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.info-content h3 {
+  color: #333;
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
+}
+
+.info-content p {
+  color: #666;
+  margin: 0;
+  font-size: 1rem;
+}
+
 /* Recommendations section */
 #recommendations {
   margin-top: 32px;
+}  
+
+/* Menu Icon (Hamburger) */
+.menu-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+    z-index: 101;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-icon-line {
+    width: 100%;
+    height: 4px;
+    background-color: #333;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hamburger animation to X */
+.menu-icon.open .menu-icon-line:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+.menu-icon.open .menu-icon-line:nth-child(2) {
+    opacity: 0;
+}
+.menu-icon.open .menu-icon-line:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+
+/* Slide-in Menu */
+.menu-nav {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Start off-screen */
+    width: 300px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    background-color: var(--card-background-color);
+    backdrop-filter: blur(10px);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.menu-nav.open {
+    left: 0;
+}
+
+.menu-nav ul {
+    padding-top: 90px; /* Increased padding to prevent overlap with menu toggle */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.menu-nav ul li {
+    margin-top: 5px; /* 5px spacing between menu items */
+}
+.menu-nav ul li:first-child {
+    margin-top: 30px; /* Initial top margin for the first item */
+}
+
+.menu-nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    padding: 16px 20px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s ease;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.menu-nav ul li a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--accent-color);
+    opacity: 0.8;
+    transform: translateX(5px); /* Subtle hover effect for better visual feedback */
+}
+
+.menu-nav ul li a.active {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* Special styling for the language switcher */
+.language-switcher > a {
+    padding-right: 50px; /* Make space for the globe icon */
+}
+
+/* Language Switcher Styles */
+.language-switcher > a::after {
+    content: '>';
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg); /* Start pointing right */
+    transition: transform 0.3s ease;
+    display: inline-block;
+    color: #333;
+}
+
+.language-switcher.expanded > a::after {
+    transform: translateY(-50%) rotate(90deg); /* Rotates to point down when expanded */
+}
+
+.language-submenu {
+    list-style: none;
+    padding-left: 20px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-in-out;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+    margin-top: 5px; /* 5px top margin from parent element */
+}
+
+.language-switcher.expanded .language-submenu {
+    max-height: 200px; /* Adjust as needed for three items */
+    opacity: 1;
+}
+
+.language-submenu li a {
+    font-size: 1rem;
+    padding: 10px 20px;
+    display: block;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.language-submenu li a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.menu-nav-footer {
+    padding-top: 20px;
+}
+
+.menu-nav-footer a {
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.menu-nav-footer a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--accent-color);
+    opacity: 0.8;
+    color: white;
+}
+
+.menu-nav-footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.footer-link {
+    color: #777; /* Gray color */
+    font-size: 0.8rem; /* Small font size */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: #333; /* Darker on hover */
+}
+
+/* --- OFFLINE GAME STYLES --- */
+#offline-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+#offline-container.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#game-canvas {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Icon */
+.profile-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 101;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    background-color: var(--card-background-color);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.3);
+    color: var(--text-color); /* This sets the color for the SVG icon */
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);
+    background: rgba(255,255,255,0.3);
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    width: 200px;
+    padding: 15px 0;
+    z-index: 1000;
+    display: none;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.profile-dropdown.show {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-weight: 500;
+}
+
+.profile-dropdown a:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.profile-dropdown .divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 8px 0;
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);
+    background: rgba(255,255,255,0.3);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.profile-icon img {
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid transparent;
+}
+
+.profile-icon svg {
+    width: 60%;
+    height: 60%;
+    fill: currentColor;
+    stroke: currentColor;
 }
