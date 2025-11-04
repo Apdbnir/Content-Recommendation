@@ -16,8 +16,6 @@
     box-shadow: none;
     backdrop-filter: none;
     transition: all 0.3s ease;
-    display: flex;
-    justify-content: center; /* Center the search input */
     width: 100%;
 }
 
@@ -31,12 +29,14 @@
     margin-bottom: 10px;
     display: flex;
     align-items: center;
+    width: 1200px; /* Fixed width of 1200px */
+    margin-left: auto;
+    margin-right: auto; /* Center the wrapper */
 }
 
 .search-input {
     flex: 1;
-    width: calc(100% - 100px); /* 100px less than full width (50px on each side) */
-    margin: 0 50px; /* 50px margin on each side */
+    width: 100%; /* Full width of the wrapper */
     padding: 12px 20px 12px 45px; /* Increased left padding to make room for search icon */
     font-size: 1rem; /* Normal font size */
     border: 2px solid #888; /* Gray border */
@@ -85,8 +85,8 @@
 .search-suggestions {
     position: absolute;
     top: 100%;
-    left: 50px; /* Align with the search input's margin */
-    right: 50px; /* Align with the search input's margin */
+    left: 0;
+    right: 0;
     background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 50%, #e8e8e8 100%); /* Match the gradient theme */
     border: 1px solid #aaa;
     border-radius: 12px;
