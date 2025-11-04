@@ -55,11 +55,11 @@
 }
 
 .search-input.loading {
-    background: linear-gradient(90deg, #000000, #888888, #ffffff, #888888, #000000); /* Black-gray-white gradient */
+    background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #d0d0d0 100%); /* Subtle gray gradient matching the background */
     background-size: 400% 400%;
     animation: gradientShift 6s ease infinite;
-    border-color: #555;
-    color: #fff; /* White text when loading */
+    border-color: #777;
+    color: #333; /* Dark text when loading */
 }
 
 .search-button {
@@ -205,7 +205,7 @@
 
 /* Loading placeholder styles */
 .feed-item.placeholder {
-    background: linear-gradient(90deg, #e8e8e8 25%, #d8d8d8 50%, #e8e8e8 75%); /* Softer gradient */
+    background: linear-gradient(90deg, #f5f5f5 25%, #e5e5e5 50%, #f5f5f5 75%); /* Subtle gradient matching the background */
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
     height: 300px;
@@ -224,10 +224,10 @@
 
 @keyframes loading {
     0% {
-        background-position: 200% 0;
+        background-position: 0% 0;
     }
     100% {
-        background-position: -200% 0;
+        background-position: 200% 0;
     }
 }
 
