@@ -56,12 +56,29 @@ document.addEventListener('DOMContentLoaded', () => {
             if (loginBtn) loginBtn.style.display = 'none';
             if (logoutBtn) {
                 logoutBtn.style.display = 'block';
+                // Remove any existing event listeners to avoid duplicates
+                logoutBtn.removeEventListener('click', handleLogout);
                 logoutBtn.addEventListener('click', handleLogout);
             }
         } else {
-            if (loginBtn) loginBtn.style.display = 'block';
+            if (loginBtn) {
+                loginBtn.style.display = 'block';
+                // Remove any existing event listeners to avoid duplicates
+                loginBtn.removeEventListener('click', handleLogin);
+                loginBtn.addEventListener('click', handleLogin);
+            }
             if (logoutBtn) logoutBtn.style.display = 'none';
         }
+    }
+    
+    // Handle login by redirecting to login page
+    function handleLogin() {
+        // Close the menu before redirecting
+        menuIcon.classList.remove('open');
+        menuNav.classList.remove('open');
+        
+        // Redirect to login page
+        window.location.href = 'login.html';
     }
 
     // Handle logout
