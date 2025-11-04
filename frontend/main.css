@@ -55,11 +55,11 @@
 }
 
 .search-input.loading {
-    background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #d0d0d0 100%); /* Subtle gray gradient matching the background */
+    background: linear-gradient(90deg, #ff4500, #ff8c00, #ffd700, #ff4500);
     background-size: 400% 400%;
     animation: gradientShift 6s ease infinite;
-    border-color: #777;
-    color: #333; /* Dark text when loading */
+    border-color: #ff4500;
+    color: #333;
 }
 
 .search-button {
@@ -205,16 +205,17 @@
 
 /* Loading placeholder styles */
 .feed-item.placeholder {
-    background: linear-gradient(90deg, #f5f5f5 25%, #e5e5e5 50%, #f5f5f5 75%); /* Subtle gradient matching the background */
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
     height: 300px;
     min-height: 300px;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease;
     position: relative;
+    backdrop-filter: blur(10px);
 }
 
 .feed-item.placeholder:hover {
@@ -224,10 +225,10 @@
 
 @keyframes loading {
     0% {
-        background-position: 0% 0;
+        background-position: 200% 0;
     }
     100% {
-        background-position: 200% 0;
+        background-position: -200% 0;
     }
 }
 
