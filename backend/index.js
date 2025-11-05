@@ -1,10 +1,16 @@
 import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 // Platforms config (example)
 const platforms = [
@@ -12,6 +18,10 @@ const platforms = [
   { name: 'Spotify', apiUrl: 'https://api.spotify.com/v1' },
   { name: 'VK', apiUrl: 'https://api.vk.com/method' }
 ];
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'start.html'));
+});
 
 // Get available platforms
 app.get('/api/platforms', (req, res) => {

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="developers">Developers</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="developers.css">
+</head>
+<body>
+    <div class="menu-icon">
+        <div class="menu-icon-line"></div>
+        <div class="menu-icon-line"></div>
+        <div class="menu-icon-line"></div>
+    </div>
+
+    <div class="profile-icon" id="profileIcon">
+        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4" fill="currentColor"/>
+            <path d="M20 20C20 17.9231 20 16.3077 19.1304 15.1538C18.3643 14.133 17.133 13.6357 16 13.5C14.4615 13.5 13.2308 13.5 12 13.5C10.7692 13.5 9.53846 13.5 8 13.5C6.86704 13.6357 5.63571 14.133 4.86957 15.1538C4 16.3077 4 17.9231 4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="profile-dropdown" id="profileDropdown">
+            <!-- Dropdown content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <nav class="menu-nav">
+        <ul>
+            <li><a href="main.html" data-translate="home">Home</a></li>
+            <li><a href="platforms.html?from=main" data-translate="change_platforms_interests">Change Platforms & Interests</a></li>
+            <li><a href="settings.html" data-translate="settings">Settings</a></li>
+            <li><a href="developers.html" data-translate="developers" class="active">Developers</a></li>
+            <li><a href="support.html" data-translate="support">Support</a></li>
+            <li><a href="donate_cookies.html" data-translate="donate_cookies">На чай и печеньки</a></li>
+            <li><a href="documentation.html" data-translate="documentation">Documentation</a></li>
+            <li class="language-switcher">
+                <a href="#" id="lang-switcher-toggle" data-translate="language">Language</a>
+                <ul class="language-submenu">
+                    <li><a href="#" data-lang="ru">Русский</a></li>
+                    <li><a href="#" data-lang="en">English</a></li>
+                    <li><a href="#" data-lang="be">Беларуская</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="menu-nav-footer">
+            <a href="#" id="login-btn" data-translate="login">Login</a>
+            <a href="#" id="logout-btn" data-translate="logout" style="display: none;">Logout</a>
+            <div class="menu-nav-footer-links">
+                <a href="about.html" class="footer-link" data-translate="about">About</a>
+                <a href="help.html" class="footer-link" data-translate="help">Help</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="content">
+            <div class="developers-container">
+                <h1 class="page-title" data-translate-key="developers">Developers</h1>
+                
+                <div class="developers-list">
+                    <div class="developer-card">
+                        <h3>Ruslan Aleksandrovich Korolev</h3>
+                        <h2 data-translate-key="idea_author">Author of the Idea</h2>
+                        <p>Project Initiator and Concept Developer</p>
+                    </div>
+                    
+                    <div class="developer-card">
+                        <h3>Ruslan Aleksandrovich Korolev</h3>
+                        <h2 data-translate-key="team_lead">Team Lead</h2>
+                        <p>Project Management and Team Coordination</p>
+                    </div>
+                    
+                    <div class="developer-card">
+                        <h3>Ruslan Aleksandrovich Korolev</h3>
+                        <h2 data-translate-key="qa_tester">QA Tester</h2>
+                        <p>Quality Assurance, Bug Testing, User Experience Validation</p>
+                    </div>
+                    
+                    <div class="developer-card">
+                        <h3>Perplexity</h3>
+                        <h2 data-translate-key="consultant">Consultant</h2>
+                        <p>Project Consultation and Research</p>
+                    </div>
+                    
+                    <div class="developer-card">
+                        <h3>Perplexity, Copilot & Ruslan Aleksandrovich Korolev</h3>
+                        <h2 data-translate-key="clerk">Clerk</h2>
+                        <p>Documentation, Record Keeping and Administrative Tasks</p>
+                    </div>
+                    
+                    <div class="developer-card">
+                        <h3>Gemini & Ruslan Aleksandrovich Korolev</h3>
+                        <h2 data-translate-key="service_provider">Service Provider</h2>
+                        <p>Service Implementation and Delivery</p>
+                    </div>
+                    
+                    <div class="developer-card">
+                        <h3>Qwen & Gemini</h3>
+                        <h2 data-translate-key="backend_developer">Backend Developer</h2>
+                        <p>Server Logic, Database Implementation, API Development</p>
+                    </div>
+                    
+                    <div class="developer-card">
+                        <h3>Qwen & Gemini</h3>
+                        <h2 data-translate-key="frontend_developer">Frontend Developer</h2>
+                        <p>User Interface Implementation, JavaScript Development, Responsive Design</p>
+                    </div>
+                    
+                    <div class="developer-card">
+                        <h3>Qwen & Gemini</h3>
+                        <h2 data-translate-key="ui_ux_designer">UI/UX Designer</h2>
+                        <p>Interface Design, User Experience, Visual Identity</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="translation.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

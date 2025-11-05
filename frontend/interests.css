@@ -1,0 +1,107 @@
+/* Centering the main container for the interests page */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Changed from center */
+    padding-top: 5vh; /* Added for consistent alignment */
+    min-height: 100vh;
+    padding: 20px;
+    padding-left: 90px; /* Space for menu icon width + margin */
+    box-sizing: border-box;
+    background: transparent !important; /* Override any background from global styles */
+    box-shadow: none !important; /* Remove box shadow */
+    border-radius: 0 !important; /* Remove border radius */
+}
+
+/* Styling for the main title */
+.interests-title {
+    font-size: 3.5rem; /* Consistent with main page */
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Styling for the subtitle */
+.interests-subtitle {
+    font-size: 1.25rem; /* Slightly larger for better readability */
+    color: #555;
+    margin-bottom: 3rem;
+    max-width: 600px; /* Limit width for better text flow */
+    text-align: center;
+}
+
+/* Container for all the interest tags */
+.interests-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 3rem;
+}
+
+/* Individual interest tag styling */
+.interest-tag {
+    padding: 15px 35px; /* More padding */
+    font-family: 'Nunito', 'Poppins', sans-serif;
+    font-size: 1.2rem; /* Slightly larger font */
+    font-weight: 600;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.2); /* More transparent */
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-out, background-color 0.2s ease-in-out; /* Smoother transitions */
+}
+
+/* Styling for selected tags */
+.interest-tag.selected {
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Softer, neutral shadow */
+}
+
+@keyframes chaotic-move {
+    0%, 100% {
+        transform: translate(0, 0) scale(var(--scale, 1));
+    }
+    10% {
+        transform: translate(5px, -5px) scale(var(--scale, 1));
+    }
+    20% {
+        transform: translate(-5px, 5px) scale(var(--scale, 1));
+    }
+    30% {
+        transform: translate(5px, 5px) scale(var(--scale, 1));
+    }
+    40% {
+        transform: translate(-5px, -5px) scale(var(--scale, 1));
+    }
+    50% {
+        transform: translate(3px, -3px) scale(var(--scale, 1));
+    }
+    60% {
+        transform: translate(-3px, 3px) scale(var(--scale, 1));
+    }
+    70% {
+        transform: translate(3px, 3px) scale(var(--scale, 1));
+    }
+    80% {
+        transform: translate(-3px, -3px) scale(var(--scale, 1));
+    }
+    90% {
+        transform: translate(0, 0) scale(var(--scale, 1));
+    }
+}
+
+/* The finish button inherits from .next-btn in style.css, so we override to remove background */
+#finishButton {
+    margin-top: 1rem;
+    background: transparent !important; /* Override any background from global styles */
+    box-shadow: none !important; /* Remove box shadow */
+    border: none !important; /* Ensure no border */
+}

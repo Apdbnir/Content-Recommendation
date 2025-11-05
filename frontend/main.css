@@ -1,4 +1,10 @@
 /* Main page - Pinterest-style Feed */
+.container {
+    background: transparent !important; /* Override any background from global styles */
+    box-shadow: none !important; /* Remove box shadow */
+    border-radius: 0 !important; /* Remove border radius */
+}
+
 .content {
     padding: 20px;
     background-color: transparent; /* Transparent to match site background */
@@ -29,21 +35,44 @@
     margin-bottom: 10px;
     display: flex;
     align-items: center;
-    width: 1500px; /* Fixed width of 1500px */
+    width: 100%;
+    max-width: 1500px; /* Maximum width of 1500px */
     margin-left: auto;
     margin-right: auto; /* Center the wrapper */
+    padding: 0 20px;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.search-input {
+    flex: 1; /* Take up remaining space */
+    width: 100%; /* Take full width of available space */
+    min-width: 200px; /* Minimum width to ensure usability */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    padding: 12px 20px 12px 20px;
+    font-size: 1rem;
+    border: 2px solid #888;
+    border-radius: 25px;
+    outline: none;
+    transition: width 0.3s ease; /* Smooth transition when resizing */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: #333;
+    box-sizing: border-box; /* Include padding in width calculation */
+    position: relative; /* Establish positioning context for suggestions */
+    min-height: 42.67px; /* Match the button height for alignment */
 }
 
 .search-input {
     flex: 1;
     width: 100%; /* Full width of the wrapper */
-    padding: 12px 20px 12px 45px; /* Increased left padding to make room for search icon */
+    padding: 12px 20px 12px 20px; /* Reset padding since search button is outside */
     font-size: 1rem; /* Normal font size */
     border: 2px solid #888; /* Gray border */
     border-radius: 25px; /* Normal border-radius, not too rounded */
     outline: none;
     transition: all 0.3s ease;
-    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #e0e0e0 100%); /* Black-white-gray gradient */
+    background: rgba(255, 255, 255, 0.2); /* More transparent background */
+    backdrop-filter: blur(10px);
     color: #333; /* Dark text color */
 }
 
@@ -63,18 +92,19 @@
 }
 
 .search-button {
-    position: absolute;
-    left: 12px;
     background: none;
     border: none;
     font-size: 1.2rem;
     color: #767676;
     cursor: pointer;
-    z-index: 1;
-    padding: 5px;
+    width: 42.67px;
+    height: 42.67px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 10px; /* Space between button and input */
+    z-index: 1;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .search-input:focus {
@@ -85,15 +115,18 @@
 .search-suggestions {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 42.67px; /* Account for search button width (42.67px) */
     right: 0;
-    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 50%, #e8e8e8 100%); /* Match the gradient theme */
+    background: rgba(255, 255, 255, 0.9); /* More transparent background */
+    backdrop-filter: blur(10px);
     border: 1px solid #aaa;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 100;
     max-height: 300px;
     overflow-y: auto;
+    width: calc(100% - 42.67px); /* Match the width of search input by accounting for button width */
+    box-sizing: border-box; /* Include border in width calculation */
 }
 
 .search-suggestions .suggestion-item {
@@ -105,7 +138,7 @@
 }
 
 .search-suggestions .suggestion-item:hover {
-    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%); /* Gray gradient on hover */
+    background: rgba(0, 0, 0, 0.1); /* More subtle hover effect */
 }
 
 .search-suggestions .suggestion-item:last-child {
@@ -149,16 +182,15 @@
 .history-item {
     padding: 8px 15px;
     margin: 5px 0;
-    background: #f8f9fa;
+    background: rgba(240, 240, 240, 0.5); /* More transparent background */
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .history-item:hover {
-    background: #e9ecef;
+    background: rgba(230, 230, 230, 0.7); /* More subtle hover effect */
 }
-
 
 
 .no-results-message {
@@ -203,11 +235,9 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Softer hover shadow */
 }
 
-/* Loading placeholder styles */
+/* Loading placeholder styles - theme adaptive */
 .feed-item.placeholder {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Softer background color that adapts to theme */
     height: 300px;
     min-height: 300px;
     border-radius: 16px;
@@ -223,20 +253,24 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Softer shadow on hover */
 }
 
-@keyframes loading {
+.feed-item.placeholder .item-wrapper {
+    height: 300px;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(90deg, var(--card-background-color, #f0f0f0) 25%, var(--background-color, #e0e0e0) 50%, var(--card-background-color, #f0f0f0) 75%);
+    background-size: 200% 100%;
+    animation: themeLoading 1.5s infinite;
+}
+
+/* Define the animation using theme colors */
+@keyframes themeLoading {
     0% {
         background-position: 200% 0;
     }
     100% {
         background-position: -200% 0;
     }
-}
-
-.feed-item.placeholder .item-wrapper {
-    height: 300px;
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
 }
 
 .feed-item.placeholder .item-overlay {
@@ -256,7 +290,7 @@
 
 .feed-item.placeholder .item-title {
     height: 15px;
-    background: rgba(255,255,255,0.3);
+    background: var(--accent-color, rgba(255,255,255,0.3));
     border-radius: 4px;
     margin-bottom: 8px;
 }
@@ -270,197 +304,137 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.3);
+    background: var(--accent-color, rgba(255,255,255,0.3));
     margin-right: 8px;
 }
 
 .feed-item.placeholder .author-name {
     height: 12px;
-    background: rgba(255,255,255,0.3);
+    background: var(--accent-color, rgba(255,255,255,0.3));
     border-radius: 4px;
     flex: 1;
 }
 
-/* Platform-specific gradient backgrounds for loading placeholders */
+/* Platform-specific loading placeholders - theme adaptive */
 .feed-item.placeholder[data-platform="YouTube"] {
-    background: linear-gradient(90deg, #ff0000, #cc0000, #ff0000);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Spotify"] {
-    background: linear-gradient(90deg, #1db954, #1ed760, #1db954);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Netflix"] {
-    background: linear-gradient(90deg, #e50914, #f00, #e50914);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Instagram"] {
-    background: linear-gradient(90deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Facebook"] {
-    background: linear-gradient(90deg, #1877f2, #0e5dc4, #1877f2);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="X"] {
-    background: linear-gradient(90deg, #000, #333, #000);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Reddit"] {
-    background: linear-gradient(90deg, #ff4500, #cc3700, #ff4500);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="GitHub"] {
-    background: linear-gradient(90deg, #333, #444, #333);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="LinkedIn"] {
-    background: linear-gradient(90deg, #0077b5, #00a0dc, #0077b5);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Warhammer"] {
-    background: linear-gradient(90deg, #8B0000, #A52A2A, #8B0000);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="VK"] {
-    background: linear-gradient(90deg, #45668e, #5a7fb4, #45668e);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Telegram"] {
-    background: linear-gradient(90deg, #0088cc, #0099e6, #0088cc);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Twitch"] {
-    background: linear-gradient(90deg, #9146ff, #a970ff, #9146ff);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Pinterest"] {
-    background: linear-gradient(90deg, #bd081c, #e60023, #bd081c);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="SoundCloud"] {
-    background: linear-gradient(90deg, #ff8800, #ff9933, #ff8800);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="GitLab"] {
-    background: linear-gradient(90deg, #fc6d26, #fd7e36, #fc6d26);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="WhatsApp"] {
-    background: linear-gradient(90deg, #25d366, #33cc66, #25d366);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Messenger"] {
-    background: linear-gradient(90deg, #0084ff, #339dff, #0084ff);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Snapchat"] {
-    background: linear-gradient(90deg, #fffc00, #fffd33, #fffc00);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Odnoklassniki"] {
-    background: linear-gradient(90deg, #ee8208, #ff8c00, #ee8208);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="YandexMusic"] {
-    background: linear-gradient(90deg, #ff0000, #cc0000, #ff0000);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Dailymotion"] {
-    background: linear-gradient(90deg, #00aaff, #33bbff, #00aaff);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Medium"] {
-    background: linear-gradient(90deg, #00ab6c, #00cc88, #00ab6c);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Tumblr"] {
-    background: linear-gradient(90deg, #35465c, #465a72, #35465c);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="AppleMusic"] {
-    background: linear-gradient(90deg, #fa233b, #ff3344, #fa233b);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="PrimeVideo"] {
-    background: linear-gradient(90deg, #00a8e1, #00bfff, #00a8e1);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Goodreads"] {
-    background: linear-gradient(90deg, #372213, #5a3a22, #372213);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Quora"] {
-    background: linear-gradient(90deg, #aa2200, #cc3300, #aa2200);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .feed-item.placeholder[data-platform="Behance"] {
-    background: linear-gradient(90deg, #1769ff, #3377ff, #1769ff);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 /* Default placeholder style */
 .feed-item.placeholder:not([data-platform]) {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: rgba(240, 240, 240, 0.6); /* Use theme-adaptive background */
 }
 
 .item-wrapper {
@@ -775,4 +749,69 @@
 /* Default feed item style */
 .feed-item:not([data-platform]):not([class*="platform-"]) {
     background: rgba(240, 240, 240, 0.6); /* Softer default background */
+}
+
+/* Responsive search bar */
+@media (max-width: 1400px) {
+    .search-bar-wrapper {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .search-bar-wrapper {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 20px 10px; /* Reduce content padding on smaller screens */
+    }
+    
+    .search-container {
+        margin-top: 40px;
+        padding: 10px;
+    }
+    
+    .search-bar-wrapper {
+        padding: 0 15px;
+        flex-wrap: nowrap; /* Prevent wrapping on small screens */
+    }
+    
+    .search-input {
+        min-width: 150px; /* Ensure minimum width for input on mobile */
+        padding: 10px 15px 10px 15px;
+        min-height: 36px; /* Adjust for smaller button */
+    }
+    
+    .search-button {
+        width: 36px;
+        height: 36px;
+        margin-right: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar-wrapper {
+        padding: 0 10px; /* Adjust padding for very small screens */
+    }
+    
+    .search-input {
+        padding: 10px 12px 10px 12px;
+        font-size: 0.9rem;
+        min-height: 32px; /* Adjust for smallest button */
+    }
+    
+    .search-button {
+        width: 32px;
+        height: 32px;
+        margin-right: 6px;
+    }
+    
+    .search-suggestions {
+        left: 32px; /* Account for smaller button width */
+        width: calc(100% - 32px); /* Match the width of search input by accounting for button width */
+        right: 0;
+    }
 }

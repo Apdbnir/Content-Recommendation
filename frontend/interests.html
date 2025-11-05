@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="start.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate-key="interests_title">Выберите интересы</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="interests.css">
 </head>
 <body>
     <div class="menu-icon">
@@ -51,11 +52,22 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div id="startButton" data-translate-key="start_button">Начать</div>
+  <div class="container">
+    <h1 class="interests-title" data-translate-key="interests_title">Интересы</h1>
+    <p class="interests-subtitle" data-translate-key="interests_subtitle">Выберите несколько тегов, чтобы мы могли дать более точные рекомендации.</p>
+    <div id="interestsContainer" class="interests-container">
+      <!-- Теги будут добавлены сюда с помощью JS -->
     </div>
-    <script src="translation.js"></script>
-    <script src="app.js"></script>
-    <script src="start.js"></script>
+    <button type="button" class="next-btn" id="finishButton">
+      <span class="next-btn-text" data-translate-key="save_button">Завершить</span>
+      <svg class="next-btn-arrow" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
+        <path d="M10 22H34" stroke="#333" stroke-width="8" stroke-linecap="round"/>
+        <path d="M28 16L34 22L28 28" stroke="#333" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+  <script src="translation.js"></script>
+  <script src="app.js"></script>
+  <script src="interests.js"></script>
 </body>
 </html>

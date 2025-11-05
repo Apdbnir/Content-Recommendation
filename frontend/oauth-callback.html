@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Callback - ContRec</title>
+    <style>
+        body {
+            font-family: 'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .callback-container {
+            background: rgba(255,255,255,0.85);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .callback-container h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .callback-container p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .loading-spinner {
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #333;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="callback-container">
+        <h1>Connecting Your Account</h1>
+        <p>Please wait while we connect your account to the service...</p>
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Extract URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            const state = urlParams.get('state');
+            const error = urlParams.get('error');
+            
+            // Get the platform from session storage
+            const platform = sessionStorage.getItem('requestedPlatform');
+            
+            if (error) {
+                // Handle error case
+                console.error('OAuth error:', error);
+                document.querySelector('h1').textContent = 'Connection Failed';
+                document.querySelector('p').textContent = `Error: ${error}`;
+                document.querySelector('.loading-spinner').style.display = 'none';
+                
+                // After a delay, redirect to main page
+                setTimeout(() => {
+                    window.location.href = 'main.html';
+                }, 3000);
+            } else if (code) {
+                // Process successful OAuth response
+                processOAuthCallback(code, platform);
+            } else {
+                // If no code or error, redirect to main page
+                window.location.href = 'main.html';
+            }
+        });
+        
+        async function processOAuthCallback(code, platform) {
+            try {
+                // In a real implementation, this would send the authorization code to your backend
+                // to exchange for an access token
+                const response = await fetch('/api/auth/callback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        code: code,
+                        platform: platform
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Store the API token in localStorage
+                    const tokenData = {
+                        token: data.token || data.accessToken,
+                        platform: platform,
+                        timestamp: Date.now(),
+                        // For demo purposes we'll say it expires in 1 hour
+                        expiresAt: Date.now() + 3600000 
+                    };
+                    
+                    localStorage.setItem(`api_token_${platform}`, JSON.stringify(tokenData));
+                    
+                    // Update connected platforms list
+                    const connectedPlatforms = JSON.parse(localStorage.getItem('connectedPlatforms') || '[]');
+                    if (!connectedPlatforms.includes(platform)) {
+                        connectedPlatforms.push(platform);
+                        localStorage.setItem('connectedPlatforms', JSON.stringify(connectedPlatforms));
+                    }
+                    
+                    // Store a flag indicating the platform is connected
+                    localStorage.setItem(`connected_${platform}`, 'true');
+                    
+                    // Update UI to show success
+                    document.querySelector('h1').textContent = 'Success!';
+                    document.querySelector('p').textContent = `${platform} connected successfully!`;
+                    document.querySelector('.loading-spinner').style.display = 'none';
+                    
+                    // Trigger platforms changed event
+                    document.dispatchEvent(new CustomEvent('platformsChanged'));
+                    
+                    // Redirect to the page that initiated the auth flow
+                    setTimeout(() => {
+                        // Check if there's a referring page in session storage
+                        const referrer = sessionStorage.getItem('authReferrer') || 'main.html';
+                        window.location.href = referrer;
+                    }, 2000);
+                } else {
+                    throw new Error('Server error processing OAuth callback');
+                }
+            } catch (error) {
+                console.error('Error processing OAuth callback:', error);
+                document.querySelector('h1').textContent = 'Connection Failed';
+                document.querySelector('p').textContent = 'An error occurred while connecting your account.';
+                document.querySelector('.loading-spinner').style.display = 'none';
+                
+                setTimeout(() => {
+                    window.location.href = 'main.html';
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>

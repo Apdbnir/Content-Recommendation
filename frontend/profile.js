@@ -219,49 +219,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function showSuccessModal() {
-        // Remove any existing modals
-        const existingModal = document.getElementById('profile-save-modal');
-        if (existingModal) {
-            existingModal.remove();
+        // Remove any existing notifications
+        const existingNotification = document.getElementById('profile-notification');
+        if (existingNotification) {
+            existingNotification.remove();
         }
         
-        // Create modal container
-        const modal = document.createElement('div');
-        modal.id = 'profile-save-modal';
-        modal.className = 'notification-modal';
-        modal.innerHTML = `
-            <div class="notification-modal-content">
-                <h3>Success</h3>
-                <p>Profile data saved successfully!</p>
-                <button id="modal-ok-btn" class="modal-btn">OK</button>
+        // Create notification element (same style as settings page)
+        const notification = document.createElement('div');
+        notification.id = 'profile-notification';
+        notification.className = 'profile-notification success';
+        notification.innerHTML = `
+            <div class="notification-content">
+                <i class="fas fa-check-circle"></i>
+                <span>Profile saved successfully!</span>
             </div>
         `;
         
-        document.body.appendChild(modal);
+        document.body.appendChild(notification);
         
-        // Add event listeners
-        const okBtn = document.getElementById('modal-ok-btn');
-        const closeModal = () => {
-            modal.remove();
-        };
+        // Auto-remove after 3 seconds
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }, 3000);
         
-        okBtn.addEventListener('click', closeModal);
-        
-        // Close when clicking outside the modal content
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
+        // Add click to dismiss
+        notification.addEventListener('click', () => {
+            notification.style.opacity = '0';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
         });
-        
-        // Close with Escape key
-        const handleEscape = (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-                document.removeEventListener('keydown', handleEscape);
-            }
-        };
-        document.addEventListener('keydown', handleEscape);
     }
     
     function addSocialLinkField() {

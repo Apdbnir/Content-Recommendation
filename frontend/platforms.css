@@ -1,0 +1,151 @@
+/* Replicating the layout from interests.css for consistency */
+
+/* Centering the main container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    min-height: 100vh;
+    padding: 20px;
+    padding-left: 90px; /* Space for menu icon width + margin */
+    box-sizing: border-box;
+    background: transparent !important; /* Override any background from global styles */
+    box-shadow: none !important; /* Remove box shadow */
+    border-radius: 0 !important; /* Remove border radius */
+}
+
+/* Styling for the main title, consistent with interests page */
+.platforms-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Styling for the subtitle, consistent with interests page */
+.platforms-subtitle {
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Container for platform buttons, positioned like the interests container */
+.platform-buttons-container {
+    position: relative;
+    width: 100%;
+    max-width: 1500px; /* Adjust as needed */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-content: center; /* Center buttons vertically */
+    margin-bottom: 3rem;
+}
+
+/* Apply smooth rounded font to all elements on the platform page */
+.platforms-title,
+.platforms-subtitle,
+.platform-btn,
+.next-btn-text {
+    font-family: 'Nunito', 'Poppins', sans-serif;
+}
+
+/* The next button inherits from .next-btn in style.css,
+   but we add margin-top for spacing. */
+#nextButton {
+    margin-top: 1rem;
+    background: transparent !important; /* Override any background from global styles */
+    box-shadow: none !important; /* Remove box shadow */
+    border: none !important; /* Ensure no border */
+}
+
+/* Platform buttons - make them initially transparent with platform-specific colors only after selection */
+.platform-btn {
+    background: rgba(255, 255, 255, 0.2) !important; /* Transparent background initially */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 32px 0 rgba(255,255,255,0.3), 0 2px 8px 0 rgba(127, 83, 172, 0.18) !important;
+    color: #333 !important;
+    transition: transform 0.8s ease-out, box-shadow 0.2s, background 0.3s, color 0.3s !important;
+}
+
+.platform-btn:hover {
+    box-shadow: 0 12px 40px rgba(255,255,255,0.95), 0 2px 12px rgba(127, 83, 172, 0.22) !important;
+    transform: scale(1.09) !important;
+    color: #fff !important;
+}
+
+.platform-btn.selected {
+    color: #fff !important;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.2) !important;
+    transform: scale(1.09) !important;
+}
+
+/* Platform-specific selected styles - these will apply the platform colors after selection */
+.platform-btn.youtube.selected { background: #ff0000 !important; }
+.platform-btn.spotify.selected { background: #1db954 !important; }
+.platform-btn.vk.selected { background: #4680c2 !important; }
+.platform-btn.netflix.selected { background: #e50914 !important; }
+.platform-btn.telegram.selected { background: #229ED9 !important; }
+.platform-btn.twitch.selected { background: #9147ff !important; }
+.platform-btn.reddit.selected { background: #ff4500 !important; }
+.platform-btn.facebook.selected { background: #1877f2 !important; }
+.platform-btn.x.selected { background: #171a21 !important; }
+.platform-btn.instagram.selected { background: #E1306C !important; }
+.platform-btn.tiktok.selected { background: #000 !important; }
+.platform-btn.linkedin.selected { background: #0077b5 !important; }
+.platform-btn.discord.selected { background: #5865F2 !important; }
+.platform-btn.steam.selected { background: #000096 !important; }
+.platform-btn.github.selected { background: #333 !important; }
+.platform-btn.pinterest.selected { background: #E60023 !important; }
+.platform-btn.soundcloud.selected { background: #FF5500 !important; }
+.platform-btn.gitlab.selected { background: #FC6D26 !important; }
+.platform-btn.whatsapp.selected { background: #25D366 !important; }
+.platform-btn.messenger.selected { background: #0084FF !important; }
+.platform-btn.snapchat.selected { background: #FFFC00 !important; color: #222 !important; }
+.platform-btn.odnoklassniki.selected { background: #EE8208 !important; }
+.platform-btn.yandexmusic.selected { background: #FFCC00 !important; color: #222 !important; }
+.platform-btn.dailymotion.selected { background: #0066DC !important; }
+.platform-btn.medium.selected { background: #00AB6C !important; }
+.platform-btn.tumblr.selected { background: #36465D !important; }
+.platform-btn.applemusic.selected { background: #fa233b !important; }
+.platform-btn.primevideo.selected { background: #00A8E1 !important; }
+.platform-btn.goodreads.selected { background: #94724d !important; }
+.platform-btn.quora.selected { background: #b92b27 !important; }
+.platform-btn.behance.selected { background: #053eff !important; }
+
+/* Platform-specific hover styles - these will apply when hovering over unselected buttons */
+.platform-btn.youtube:hover { background: #ff0000 !important; }
+.platform-btn.spotify:hover { background: #1db954 !important; }
+.platform-btn.vk:hover { background: #4680c2 !important; }
+.platform-btn.netflix:hover { background: #e50914 !important; }
+.platform-btn.telegram:hover { background: #229ED9 !important; }
+.platform-btn.twitch:hover { background: #9147ff !important; }
+.platform-btn.reddit:hover { background: #ff4500 !important; }
+.platform-btn.facebook:hover { background: #1877f2 !important; }
+.platform-btn.x:hover { background: #171a21 !important; }
+.platform-btn.instagram:hover { background: #E1306C !important; }
+.platform-btn.tiktok:hover { background: #000 !important; }
+.platform-btn.linkedin:hover { background: #0077b5 !important; }
+.platform-btn.discord:hover { background: #5865F2 !important; }
+.platform-btn.steam:hover { background: #000096 !important; }
+.platform-btn.github:hover { background: #333 !important; }
+.platform-btn.pinterest:hover { background: #E60023 !important; }
+.platform-btn.soundcloud:hover { background: #FF5500 !important; }
+.platform-btn.gitlab:hover { background: #FC6D26 !important; }
+.platform-btn.whatsapp:hover { background: #25D366 !important; }
+.platform-btn.messenger:hover { background: #0084FF !important; }
+.platform-btn.snapchat:hover { background: #FFFC00 !important; color: #222 !important; }
+.platform-btn.odnoklassniki:hover { background: #EE8208 !important; }
+.platform-btn.yandexmusic:hover { background: #FFCC00 !important; color: #222 !important; }
+.platform-btn.dailymotion:hover { background: #0066DC !important; }
+.platform-btn.medium:hover { background: #00AB6C !important; }
+.platform-btn.tumblr:hover { background: #36465D !important; }
+.platform-btn.applemusic:hover { background: #fa233b !important; }
+.platform-btn.primevideo:hover { background: #00A8E1 !important; }
+.platform-btn.goodreads:hover { background: #94724d !important; }
+.platform-btn.quora:hover { background: #b92b27 !important; }
+.platform-btn.behance:hover { background: #053eff !important; }

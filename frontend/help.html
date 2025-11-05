@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - ContRec</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .help-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            font-family: var(--main-font);
+            color: var(--main-text-color, var(--text-color));
+        }
+
+        .help-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .help-header h1 {
+            font-size: 2.5rem;
+            color: var(--main-text-color, var(--text-color));
+            margin-bottom: 15px;
+        }
+
+        .help-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .help-content p {
+            margin-bottom: 20px;
+        }
+
+        .help-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .help-section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .help-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .help-section h2 {
+            color: var(--main-text-color, var(--text-color));
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .help-section ul {
+            padding-left: 20px;
+        }
+
+        .help-section li {
+            margin-bottom: 10px;
+        }
+
+        .help-tutorials {
+            margin: 40px 0;
+        }
+
+        .tutorial-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .tutorial-card h3 {
+            color: var(--main-text-color, var(--text-color));
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tutorial-card p {
+            margin-bottom: 15px;
+        }
+
+        .tutorial-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--accent-color);
+            color: var(--button-text-color, white) !important;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tutorial-link:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .quick-links {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .quick-links h2 {
+            text-align: center;
+            color: var(--main-text-color, var(--text-color));
+            margin-top: 0;
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .quick-link {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .quick-link:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .quick-link a {
+            color: var(--main-text-color, var(--text-color));
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+        }
+
+        .quick-link:hover a {
+            color: var(--button-text-color, white) !important;
+        }
+
+        .quick-link i {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .search-help {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid var(--accent-color);
+            border-radius: 8px 0 0 8px;
+            font-family: var(--main-font);
+            font-size: 1rem;
+            color: var(--main-text-color, var(--text-color));
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .search-btn {
+            background: var(--accent-color);
+            color: var(--button-text-color, white);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 8px 8px 0;
+            font-family: var(--main-font);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .help-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .help-icon i {
+            color: var(--button-text-color, white);
+            font-size: 1.5rem;
+        }
+
+        .active-footer {
+            background: var(--accent-color) !important;
+            color: var(--button-text-color, white) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-icon">
+        <div class="menu-icon-line"></div>
+        <div class="menu-icon-line"></div>
+        <div class="menu-icon-line"></div>
+    </div>
+
+    <div class="profile-icon" id="profileIcon">
+        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4" fill="currentColor"/>
+            <path d="M20 20C20 17.9231 20 16.3077 19.1304 15.1538C18.3643 14.133 17.133 13.6357 16 13.5C14.4615 13.5 13.2308 13.5 12 13.5C10.7692 13.5 9.53846 13.5 8 13.5C6.86704 13.6357 5.63571 14.133 4.86957 15.1538C4 16.3077 4 17.9231 4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="profile-dropdown" id="profileDropdown">
+            <!-- Dropdown content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <nav class="menu-nav">
+        <ul>
+            <li><a href="main.html" data-translate="home">Home</a></li>
+            <li><a href="platforms.html?from=help" data-translate="change_platforms_interests">Change Platforms & Interests</a></li>
+            <li><a href="settings.html" data-translate="settings">Settings</a></li>
+            <li><a href="developers.html" data-translate="developers">Developers</a></li>
+            <li><a href="help.html" data-translate="help" class="active">Help</a></li>
+            <li><a href="support.html" data-translate="support">Support</a></li>
+            <li><a href="donate_cookies.html" data-translate="donate_cookies">На чай и печеньки</a></li>
+            <li><a href="documentation.html" data-translate="documentation">Documentation</a></li>
+            <li class="language-switcher">
+                <a href="#" id="lang-switcher-toggle" data-translate="language">Language</a>
+                <ul class="language-submenu">
+                    <li><a href="#" data-lang="ru">Русский</a></li>
+                    <li><a href="#" data-lang="en">English</a></li>
+                    <li><a href="#" data-lang="be">Беларуская</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="menu-nav-footer">
+            <a href="#" id="login-btn" data-translate="login">Login</a>
+            <a href="#" id="logout-btn" data-translate="logout" style="display: none;">Logout</a>
+            <div class="menu-nav-footer-links">
+                <a href="about.html" class="footer-link" data-translate="about">About</a>
+                <a href="help.html" class="footer-link active-footer" data-translate="help">Help</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-container">
+        <div class="help-header">
+            <div class="help-icon">
+                <i class="fas fa-question-circle"></i>
+            </div>
+            <h1>Help Center</h1>
+            <p>Find answers to common questions and learn how to get the most out of ContRec</p>
+        </div>
+
+        <div class="search-help">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search help articles...">
+                <button class="search-btn">Search</button>
+            </div>
+        </div>
+
+        <div class="help-content">
+            <p>Welcome to the ContRec Help Center! Here you'll find resources to help you get started, troubleshoot issues, and make the most of our content recommendation platform.</p>
+        </div>
+
+        <div class="help-sections">
+            <div class="help-section">
+                <h2><i class="fas fa-star"></i> Getting Started</h2>
+                <ul>
+                    <li><a href="#account-setup">Creating your account</a></li>
+                    <li><a href="#connecting-platforms">Connecting your platforms</a></li>
+                    <li><a href="#customizing-interests">Customizing your interests</a></li>
+                    <li><a href="#navigating-feed">Navigating your feed</a></li>
+                </ul>
+            </div>
+
+            <div class="help-section">
+                <h2><i class="fas fa-cog"></i> Settings</h2>
+                <ul>
+                    <li><a href="#privacy-settings">Privacy settings</a></li>
+                    <li><a href="#notification-preferences">Notification preferences</a></li>
+                    <li><a href="#theme-customization">Theme customization</a></li>
+                    <li><a href="#connected-accounts">Managing connected accounts</a></li>
+                </ul>
+            </div>
+
+            <div class="help-section">
+                <h2><i class="fas fa-shield-alt"></i> Security</h2>
+                <ul>
+                    <li><a href="#account-security">Account security</a></li>
+                    <li><a href="#data-privacy">Data privacy</a></li>
+                    <li><a href="#two-factor-auth">Two-factor authentication</a></li>
+                    <li><a href="#privacy-controls">Privacy controls</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="help-tutorials">
+            <h2 style="text-align: center; color: var(--main-text-color, var(--text-color)); margin-bottom: 30px;">Video Tutorials</h2>
+            
+            <div class="tutorial-card">
+                <h3><i class="fas fa-play-circle"></i> How to Connect Your Platforms</h3>
+                <p>Learn how to connect your favorite content platforms to ContRec for personalized recommendations.</p>
+                <a href="#" class="tutorial-link">Watch Tutorial</a>
+            </div>
+            
+            <div class="tutorial-card">
+                <h3><i class="fas fa-play-circle"></i> Customizing Your Interests</h3>
+                <p>Discover how to customize your interests to get better content recommendations.</p>
+                <a href="#" class="tutorial-link">Watch Tutorial</a>
+            </div>
+            
+            <div class="tutorial-card">
+                <h3><i class="fas fa-play-circle"></i> Using Advanced Search</h3>
+                <p>Learn how to use our advanced search features to find specific content across platforms.</p>
+                <a href="#" class="tutorial-link">Watch Tutorial</a>
+            </div>
+        </div>
+
+        <div class="quick-links">
+            <h2>Quick Links</h2>
+            <div class="quick-links-grid">
+                <div class="quick-link">
+                    <i class="fas fa-book"></i>
+                    <a href="documentation.html">Documentation</a>
+                </div>
+                <div class="quick-link">
+                    <i class="fas fa-headset"></i>
+                    <a href="support.html">Contact Support</a>
+                </div>
+                <div class="quick-link">
+                    <i class="fas fa-file-alt"></i>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <div class="quick-link">
+                    <i class="fas fa-user-shield"></i>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Apply saved theme settings globally when any page loads
+        function applySavedTheme() {
+            // Define CSS custom properties and their corresponding localStorage keys
+            const themeSettings = {
+                '--background-color': 'cssprop--background-color',
+                '--text-color': 'cssprop--text-color',
+                '--accent-color': 'cssprop--accent-color',
+                '--header-color': 'cssprop--header-color',
+                '--footer-color': 'cssprop--footer-color',
+                '--card-background-color': 'cssprop--card-background-color',
+                '--background-gradient-1': 'cssprop--background-gradient-1',
+                '--background-gradient-2': 'cssprop--background-gradient-2',
+                '--background-gradient-3': 'cssprop--background-gradient-3',
+                '--background-gradient-4': 'cssprop--background-gradient-4',
+                '--background-gradient': 'cssprop--background-gradient',
+                '--main-font': 'cssprop--main-font',
+                '--font-size': 'cssprop--font-size',
+                '--header-font': 'cssprop--header-font',
+                '--link-color': 'cssprop--link-color',
+                '--button-color': 'cssprop--button-color',
+                '--button-text-color': 'cssprop--button-text-color'
+            };
+            
+            // Apply each saved theme property to the document root
+            Object.keys(themeSettings).forEach(prop => {
+                const savedValue = localStorage.getItem(themeSettings[prop]);
+                if (savedValue) {
+                    document.documentElement.style.setProperty(prop, savedValue);
+                }
+            });
+            
+            // Also update body styles if needed
+            const backgroundColor = localStorage.getItem('cssprop--background-color');
+            const textColor = localStorage.getItem('cssprop--text-color');
+            const mainFont = localStorage.getItem('cssprop--main-font');
+            const backgroundGradient = localStorage.getItem('cssprop--background-gradient');
+            
+            if (backgroundColor) document.body.style.backgroundColor = backgroundColor;
+            if (textColor) document.body.style.color = textColor;
+            if (mainFont) document.body.style.fontFamily = mainFont;
+            if (backgroundGradient) {
+                document.body.style.background = backgroundGradient;
+                document.body.style.backgroundSize = '400% 400%';
+            }
+        }
+
+        // Apply saved theme when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            applySavedTheme();
+            
+            const menuIcon = document.querySelector('.menu-icon');
+            const menuNav = document.querySelector('.menu-nav');
+            const langSwitcherToggle = document.getElementById('lang-switcher-toggle');
+            const loginBtn = document.getElementById('login-btn');
+            const logoutBtn = document.getElementById('logout-btn');
+
+            // --- Menu Logic ---
+            if (menuIcon && menuNav) {
+                menuIcon.addEventListener('click', () => {
+                    menuIcon.classList.toggle('open');
+                    menuNav.classList.toggle('open');
+                });
+            }
+
+            // --- Language Switcher Toggle Logic ---
+            if (langSwitcherToggle) {
+                langSwitcherToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation(); // Prevent closing the menu when clicking the language toggle
+                    const languageSwitcher = langSwitcherToggle.closest('.language-switcher');
+                    languageSwitcher.classList.toggle('expanded');
+                });
+            }
+
+            // --- Language Selection Logic ---
+            const languageLinks = document.querySelectorAll('.language-submenu a');
+            languageLinks.forEach(link => {
+                link.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const selectedLang = e.target.getAttribute('data-lang');
+                    setLanguage(selectedLang);
+                    await applyTranslations(selectedLang);
+                    document.dispatchEvent(new CustomEvent('languageChanged'));
+                    
+                    // Close the submenu after selection
+                    const languageSwitcher = langSwitcherToggle.closest('.language-switcher');
+                    languageSwitcher.classList.remove('expanded');
+                    
+                    // Also close the main menu if needed
+                    menuIcon.classList.remove('open');
+                    menuNav.classList.remove('open');
+                });
+            });
+
+            // --- Authentication Logic ---
+            // Check if user is authenticated
+            function isAuthenticated() {
+                return localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+            }
+
+            // Update login/logout buttons based on authentication status
+            function updateAuthButtons() {
+                if (isAuthenticated()) {
+                    if (loginBtn) loginBtn.style.display = 'none';
+                    if (logoutBtn) {
+                        logoutBtn.style.display = 'block';
+                        // Remove any existing event listeners to avoid duplicates
+                        logoutBtn.removeEventListener('click', handleLogout);
+                        logoutBtn.addEventListener('click', handleLogout);
+                    }
+                } else {
+                    if (loginBtn) {
+                        loginBtn.style.display = 'block';
+                        // Remove any existing event listeners to avoid duplicates
+                        loginBtn.removeEventListener('click', handleLogin);
+                        loginBtn.addEventListener('click', handleLogin);
+                    }
+                    if (logoutBtn) logoutBtn.style.display = 'none';
+                }
+            }
+            
+            // Handle login by redirecting to login page
+            function handleLogin() {
+                // Close the menu before redirecting
+                menuIcon.classList.remove('open');
+                menuNav.classList.remove('open');
+                
+                // Redirect to login page
+                window.location.href = 'login.html';
+            }
+
+            // Handle logout
+            function handleLogout() {
+                // Get user info before clearing it to remove user-specific data
+                const user = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user') || null);
+                
+                // Remove authentication tokens
+                localStorage.removeItem('authToken');
+                sessionStorage.removeItem('authToken');
+                localStorage.removeItem('user');
+                
+                // Clear platform and interest selections if we know the user
+                if (user && user.id) {
+                    localStorage.removeItem(`user_${user.id}_selectedPlatforms`);
+                    localStorage.removeItem(`user_${user.id}_selectedInterests`);
+                } else {
+                    // Fallback to remove generic keys if no user was identified
+                    localStorage.removeItem('selectedPlatforms');
+                    localStorage.removeItem('selectedInterests');
+                }
+                
+                // Redirect to index page
+                window.location.href = 'index.html';
+            }
+
+            // --- Close menu when clicking outside ---
+            document.addEventListener('click', (e) => {
+                if (menuNav.classList.contains('open')) {
+                    // Check if the click is outside the menu and menu icon
+                    if (!menuNav.contains(e.target) && !menuIcon.contains(e.target)) {
+                        menuIcon.classList.remove('open');
+                        menuNav.classList.remove('open');
+                        
+                        // Also close the language submenu if open
+                        const languageSwitcher = document.querySelector('.language-switcher');
+                        if (languageSwitcher) {
+                            languageSwitcher.classList.remove('expanded');
+                        }
+                    }
+                }
+            });
+
+            // --- Initial Load ---
+            const initialLang = getLanguage();
+            applyTranslations(initialLang);
+            
+            // Update authentication state
+            updateAuthButtons();
+
+            // Profile dropdown functionality
+            const profileIcon = document.querySelector('.profile-icon');
+            const profileDropdown = document.getElementById('profileDropdown');
+            
+            if (profileIcon) {
+                // Click on the icon itself (not the dropdown) to navigate based on current page
+                profileIcon.addEventListener('click', (e) => {
+                    // If the click is on the icon part (not the dropdown), handle navigation
+                    if (e.target.closest('.profile-icon') === profileIcon && !e.target.closest('.profile-dropdown')) {
+                        // Check if user is authenticated
+                        const isAuthenticated = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+                        
+                        // Check if we're currently on the profile page
+                        const isOnProfilePage = window.location.pathname.includes('profile.html');
+                        
+                        if (isOnProfilePage) {
+                            // If on profile page, go back to previous page
+                            window.history.back();
+                        } else if (isAuthenticated) {
+                            // If not on profile page and authenticated, go to profile page
+                            window.location.href = 'profile.html';
+                        } else {
+                            // If not authenticated, redirect to login
+                            window.location.href = 'login.html';
+                        }
+                    } else {
+                        // If click is on dropdown elements, let the default behavior apply
+                        e.stopPropagation();
+                    }
+                });
+            }
+            
+            // Handle settings link navigation
+            const settingsLink = document.querySelector('a[data-translate="settings"]');
+            if (settingsLink) {
+                settingsLink.addEventListener('click', (e) => {
+                    // Prevent default behavior to handle the navigation properly
+                    e.preventDefault();
+                    
+                    // Navigate to settings page
+                    window.location.href = 'settings.html';
+                });
+            }
+            
+            // Close dropdown when clicking elsewhere (only if dropdown was opened by click)
+            document.addEventListener('click', (e) => {
+                if (profileDropdown && !profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+                    profileDropdown.classList.remove('show');
+                }
+            });
+            
+
+            
+            // Function to update profile icon with profile picture if available
+            function updateProfileIcon() {
+                const profileIcon = document.querySelector('.profile-icon');
+                if (!profileIcon) return;
+                
+                const profilePicture = localStorage.getItem('profilePicture');
+                const profileIconSvg = profileIcon.querySelector('svg');
+                const profileIconCurrentImg = profileIcon.querySelector('img:not(.profile-photo img)'); // Don't select the profile photo in the profile page content
+                
+                // Remove current image if exists (but not the profile photo in the profile form)
+                if (profileIconCurrentImg) {
+                    profileIconCurrentImg.remove();
+                }
+                
+                if (profilePicture) {
+                    // Create new image element
+                    const img = document.createElement('img');
+                    img.src = profilePicture;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = '50%'; // Make sure it's circular
+                    
+                    // Add the image to the profile icon container
+                    // Insert it before the dropdown if it exists, otherwise at the end
+                    const dropdown = profileIcon.querySelector('.profile-dropdown');
+                    if (dropdown) {
+                        profileIcon.insertBefore(img, dropdown);
+                    } else {
+                        profileIcon.appendChild(img);
+                    }
+                    
+                    // Remove the SVG if we're adding an image
+                    if (profileIconSvg) {
+                        profileIconSvg.remove();
+                    }
+                } else {
+                    // If no profile picture, ensure the default SVG is present
+                    if (!profileIcon.querySelector('svg')) {
+                        const svg = document.createElement('svg');
+                        svg.setAttribute('width', '100%');
+                        svg.setAttribute('height', '100%');
+                        svg.setAttribute('viewBox', '0 0 24 24');
+                        svg.setAttribute('fill', 'none');
+                        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+                        
+                        svg.innerHTML = `
+                            <circle cx="12" cy="8" r="4" fill="currentColor"/>
+                            <path d="M20 20C20 17.9231 20 16.3077 19.1304 15.1538C18.3643 14.133 17.133 13.6357 16 13.5C14.4615 13.5 13.2308 13.5 12 13.5C10.7692 13.5 9.53846 13.5 8 13.5C6.86704 13.6357 5.63571 14.133 4.86957 15.1538C4 16.3077 4 17.9231 4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        `;
+                        
+                        // Insert SVG before dropdown if it exists
+                        const dropdown = profileIcon.querySelector('.profile-dropdown');
+                        if (dropdown) {
+                            profileIcon.insertBefore(svg, dropdown);
+                        } else {
+                            profileIcon.appendChild(svg);
+                        }
+                    }
+                }
+            }
+            
+            // Function to update profile dropdown content based on auth status
+            function updateProfileDropdown() {
+                if (!profileDropdown) return;
+                
+                const isAuthenticated = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+                const isOnProfilePage = window.location.pathname.includes('profile.html');
+                
+                if (isAuthenticated) {
+                    // User is authenticated - show profile options
+                    if (isOnProfilePage) {
+                        // When on profile page, show back option instead of additional logout
+                        profileDropdown.innerHTML = `
+                            <a href="profile.html" data-translate="edit_profile">Edit Profile</a>
+                            <div class="divider"></div>
+                            <a href="#" id="backBtn" data-translate="back">Back</a>
+                            <a href="#" id="logoutDropdownBtn" data-translate="logout">Logout</a>
+                        `;
+                    } else {
+                        // On other pages, show edit profile and logout options
+                        profileDropdown.innerHTML = `
+                            <a href="profile.html" data-translate="edit_profile">Edit Profile</a>
+                            <div class="divider"></div>
+                            <a href="#" id="logoutDropdownBtn" data-translate="logout">Logout</a>
+                        `;
+                    }
+                    
+                    // Add event listener to logout button in dropdown
+                    const logoutBtn = document.getElementById('logoutDropdownBtn');
+                    if (logoutBtn) {
+                        logoutBtn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            handleLogout();
+                        });
+                    }
+                    
+                    // Add event listener to back button if on profile page
+                    const backBtn = document.getElementById('backBtn');
+                    if (backBtn && isOnProfilePage) {
+                        backBtn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            window.history.back();
+                        });
+                    }
+                } else {
+                    // User is not authenticated - show auth options
+                    profileDropdown.innerHTML = `
+                        <a href="login.html" data-translate="login">Login</a>
+                        <a href="register.html" data-translate="register">Register</a>
+                    `;
+                }
+                
+                // Apply translations to dropdown items
+                const dropdownLinks = profileDropdown.querySelectorAll('a');
+                dropdownLinks.forEach(link => {
+                    const key = link.getAttribute('data-translate');
+                    if (key) {
+                        const currentLang = localStorage.getItem('language') || 'ru';
+                        let translations = {};
+                        if (currentLang === 'ru') {
+                            translations = { edit_profile: 'Редактировать профиль', logout: 'Выйти', back: 'Вернуться', login: 'Войти', register: 'Зарегистрироваться' };
+                        } else if (currentLang === 'be') { 
+                            translations = { edit_profile: 'Рэдагаваць профіль', logout: 'Выйсці', back: 'Вярнуцца', login: 'Увайсці', register: 'Зарэгістравацца' };
+                        } else {
+                            translations = { edit_profile: 'Edit Profile', logout: 'Logout', back: 'Back', login: 'Login', register: 'Register' };
+                        }
+                        
+                        link.textContent = translations[key] || key;
+                    }
+                });
+            }
+            
+            // Initialize profile dropdown with correct content
+            if (profileDropdown) {
+                updateProfileDropdown();
+            }
+            
+            // Initialize profile icon with profile picture if available
+            updateProfileIcon();
+            
+            // Listen for changes to profile picture in localStorage
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'profilePicture') {
+                    updateProfileIcon();
+                }
+            });
+        });
+
+        // Basic translation function (placeholder)
+        function setLanguage(lang) {
+            localStorage.setItem('language', lang);
+        }
+
+        function getLanguage() {
+            return localStorage.getItem('language') || 'en';
+        }
+
+        async function applyTranslations(lang) {
+            // Simple placeholder implementation
+            // In a real app, this would load actual translations
+        }
+    </script>
+</body>
+</html>

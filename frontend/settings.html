@@ -26,11 +26,13 @@
 
     <nav class="menu-nav">
         <ul>
+            <li><a href="main.html" data-translate="home">Home</a></li>
             <li><a href="platforms.html?from=settings" data-translate="change_platforms_interests">Change Platforms & Interests</a></li>
-            <li><a href="#" data-translate="settings" class="active">Settings</a></li>
-            <li><a href="#" data-translate="developers">Developers</a></li>
-            <li><a href="#" data-translate="donate_cookies">На чай и печеньки</a></li>
-            <li><a href="#" data-translate="documentation">Documentation</a></li>
+            <li><a href="settings.html" data-translate="settings" class="active">Settings</a></li>
+            <li><a href="developers.html" data-translate="developers">Developers</a></li>
+            <li><a href="support.html" data-translate="support">Support</a></li>
+            <li><a href="donate_cookies.html" data-translate="donate_cookies">На чай и печеньки</a></li>
+            <li><a href="documentation.html" data-translate="documentation">Documentation</a></li>
             <li class="language-switcher">
                 <a href="#" id="lang-switcher-toggle" data-translate="language">Language</a>
                 <ul class="language-submenu">
@@ -44,112 +46,200 @@
             <a href="#" id="login-btn" data-translate="login">Login</a>
             <a href="#" id="logout-btn" data-translate="logout" style="display: none;">Logout</a>
             <div class="menu-nav-footer-links">
-                <a href="#" class="footer-link" data-translate="about">About</a>
-                <a href="#" class="footer-link" data-translate="help">Help</a>
+                <a href="about.html" class="footer-link" data-translate="about">About</a>
+                <a href="help.html" class="footer-link" data-translate="help">Help</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
         <main class="content">
-            <h1>Settings</h1>
+            <div class="settings-header">
+                <h1>Settings</h1>
+            </div>
+            
+            <!-- Theme Preview Section -->
+            <div class="theme-preview-container">
+                <h2 data-translate="theme_preview">Theme Preview</h2>
+                <div class="theme-preview-box">
+                    <div class="preview-header" id="previewHeader">
+                        <div class="preview-menu">
+                            <div class="preview-menu-item"></div>
+                            <div class="preview-menu-item"></div>
+                            <div class="preview-menu-item"></div>
+                        </div>
+                    </div>
+                    <div class="preview-content" id="previewContent">
+                        <div class="preview-card" id="previewCard">
+                            <h3 data-translate="preview_title">Preview Title</h3>
+                            <p data-translate="preview_text">This is a preview of how your theme will look on the website.</p>
+                            <button class="preview-button" id="previewButton">Preview Button</button>
+                        </div>
+                    </div>
+                    <div class="preview-footer" id="previewFooter">
+                        <div class="preview-footer-item"></div>
+                        <div class="preview-footer-item"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings Sections -->
             <div class="settings-container">
-                <div class="settings-section">
-                    <h2>Color Settings</h2>
-                    
-                    <div class="setting-group">
-                        <label for="backgroundColor">Background Color</label>
-                        <input type="color" id="backgroundColor" name="backgroundColor" value="#ffffff">
+                <div class="settings-columns">
+                    <!-- Color Settings - Left Column -->
+                    <div class="settings-section left-column">
+                        <h2>Color Settings</h2>
+                        
+                        <div class="setting-group">
+                            <label for="textColor">Text Color</label>
+                            <input type="color" id="textColor" name="textColor" value="#333333">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="accentColor">Accent Color</label>
+                            <input type="color" id="accentColor" name="accentColor" value="#a1c4fd">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="headerColor">Header Color</label>
+                            <input type="color" id="headerColor" name="headerColor" value="#f8f9fa">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="footerColor">Footer Color</label>
+                            <input type="color" id="footerColor" name="footerColor" value="#e9ecef">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="cardBackgroundColor">Card Background Color</label>
+                            <input type="color" id="cardBackgroundColor" name="cardBackgroundColor" value="#ffffff">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="buttonColor">Button Color</label>
+                            <input type="color" id="buttonColor" name="buttonColor" value="#a1c4fd">
+                        </div>
                     </div>
                     
-                    <div class="setting-group">
-                        <label for="textColor">Text Color</label>
-                        <input type="color" id="textColor" name="textColor" value="#333333">
+                    <!-- Background Settings - Middle Column -->
+                    <div class="settings-section middle-column">
+                        <h2>Background Settings</h2>
+                        
+                        <div class="setting-group">
+                            <label for="backgroundColor">Page Background Color</label>
+                            <input type="color" id="backgroundColor" name="backgroundColor" value="#ffffff">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="backgroundGradient1">Background Gradient Color 1</label>
+                            <input type="color" id="backgroundGradient1" name="backgroundGradient1" value="#ff9a9e">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="backgroundGradient2">Background Gradient Color 2</label>
+                            <input type="color" id="backgroundGradient2" name="backgroundGradient2" value="#fad0c4">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="backgroundGradient3">Background Gradient Color 3</label>
+                            <input type="color" id="backgroundGradient3" name="backgroundGradient3" value="#a1c4fd">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="backgroundGradient4">Background Gradient Color 4</label>
+                            <input type="color" id="backgroundGradient4" name="backgroundGradient4" value="#c2e9fb">
+                        </div>
                     </div>
                     
-                    <div class="setting-group">
-                        <label for="accentColor">Accent Color</label>
-                        <input type="color" id="accentColor" name="accentColor" value="#a1c4fd">
-                    </div>
-                    
-                    <div class="setting-group">
-                        <label for="headerColor">Header Color</label>
-                        <input type="color" id="headerColor" name="headerColor" value="#f8f9fa">
-                    </div>
-                    
-                    <div class="setting-group">
-                        <label for="footerColor">Footer Color</label>
-                        <input type="color" id="footerColor" name="footerColor" value="#e9ecef">
-                    </div>
-                    
-                    <div class="setting-group">
-                        <label for="cardBackgroundColor">Card Background Color</label>
-                        <input type="color" id="cardBackgroundColor" name="cardBackgroundColor" value="#ffffff">
+                    <!-- Font Settings - Right Column -->
+                    <div class="settings-section right-column">
+                        <h2>Font Settings</h2>
+                        
+                        <div class="setting-group">
+                            <label for="mainFont">Main Font</label>
+                            <select id="mainFont" name="mainFont">
+                                <option value="'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif">Nunito (Default)</option>
+                                <option value="Arial, sans-serif">Arial</option>
+                                <option value="'Times New Roman', serif">Times New Roman</option>
+                                <option value="'Courier New', monospace">Courier New</option>
+                                <option value="Georgia, serif">Georgia</option>
+                                <option value="Verdana, sans-serif">Verdana</option>
+                                <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Segoe UI</option>
+                                <option value="Roboto, sans-serif">Roboto</option>
+                                <option value="Open Sans, sans-serif">Open Sans</option>
+                                <option value="Lato, sans-serif">Lato</option>
+                                <option value="'Nunito', sans-serif">Nunito</option>
+                                <option value="Poppins, sans-serif">Poppins</option>
+                                <option value="'Montserrat', sans-serif">Montserrat</option>
+                                <option value="'Playfair Display', serif">Playfair Display</option>
+                                <option value="'Lora', serif">Lora</option>
+                                <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
+                                <option value="'Merriweather', serif">Merriweather</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="fontSize">Font Size</label>
+                            <select id="fontSize" name="fontSize">
+                                <option value="14px">Small (14px)</option>
+                                <option value="16px" selected>Medium (16px)</option>
+                                <option value="18px">Large (18px)</option>
+                                <option value="20px">Extra Large (20px)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="headerFont">Header Font</label>
+                            <select id="headerFont" name="headerFont">
+                                <option value="'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif">Nunito (Default)</option>
+                                <option value="Arial, sans-serif">Arial</option>
+                                <option value="'Times New Roman', serif">Times New Roman</option>
+                                <option value="'Courier New', monospace">Courier New</option>
+                                <option value="Georgia, serif">Georgia</option>
+                                <option value="Verdana, sans-serif">Verdana</option>
+                                <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Segoe UI</option>
+                                <option value="Roboto, sans-serif">Roboto</option>
+                                <option value="Open Sans, sans-serif">Open Sans</option>
+                                <option value="Lato, sans-serif">Lato</option>
+                                <option value="'Nunito', sans-serif">Nunito</option>
+                                <option value="Poppins, sans-serif">Poppins</option>
+                                <option value="'Montserrat', sans-serif">Montserrat</option>
+                                <option value="'Playfair Display', serif">Playfair Display</option>
+                                <option value="'Lora', serif">Lora</option>
+                                <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
+                                <option value="'Merriweather', serif">Merriweather</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="headerTextColor">Header Text Color</label>
+                            <input type="color" id="headerTextColor" name="headerTextColor" value="#333333">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="mainTextColor">Main Text Color</label>
+                            <input type="color" id="mainTextColor" name="mainTextColor" value="#333333">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="hintTextColor">Hint Text Color</label>
+                            <input type="color" id="hintTextColor" name="hintTextColor" value="#6c757d">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="buttonTextColor">Button Text Color</label>
+                            <input type="color" id="buttonTextColor" name="buttonTextColor" value="#ffffff">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="linkColor">Link Color</label>
+                            <input type="color" id="linkColor" name="linkColor" value="#007bff">
+                        </div>
                     </div>
                 </div>
                 
-                <div class="settings-section">
-                    <h2>Font Settings</h2>
-                    
-                    <div class="setting-group">
-                        <label for="mainFont">Main Font</label>
-                        <select id="mainFont" name="mainFont">
-                            <option value="Arial, sans-serif">Arial</option>
-                            <option value="'Times New Roman', serif">Times New Roman</option>
-                            <option value="'Courier New', monospace">Courier New</option>
-                            <option value="Georgia, serif">Georgia</option>
-                            <option value="Verdana, sans-serif">Verdana</option>
-                            <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Segoe UI</option>
-                            <option value="Roboto, sans-serif">Roboto</option>
-                            <option value="Open Sans, sans-serif">Open Sans</option>
-                            <option value="Lato, sans-serif">Lato</option>
-                            <option value="'Nunito', sans-serif">Nunito</option>
-                        </select>
-                    </div>
-                    
-                    <div class="setting-group">
-                        <label for="fontSize">Font Size</label>
-                        <select id="fontSize" name="fontSize">
-                            <option value="14px">Small (14px)</option>
-                            <option value="16px" selected>Medium (16px)</option>
-                            <option value="18px">Large (18px)</option>
-                            <option value="20px">Extra Large (20px)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="setting-group">
-                        <label for="headerFont">Header Font</label>
-                        <select id="headerFont" name="headerFont">
-                            <option value="Arial, sans-serif">Arial</option>
-                            <option value="'Times New Roman', serif">Times New Roman</option>
-                            <option value="'Courier New', monospace">Courier New</option>
-                            <option value="Georgia, serif">Georgia</option>
-                            <option value="Verdana, sans-serif">Verdana</option>
-                            <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Segoe UI</option>
-                            <option value="Roboto, sans-serif">Roboto</option>
-                            <option value="Open Sans, sans-serif">Open Sans</option>
-                            <option value="Lato, sans-serif">Lato</option>
-                            <option value="'Nunito', sans-serif">Nunito</option>
-                        </select>
-                    </div>
-                    
-                    <div class="setting-group">
-                        <label for="linkColor">Link Color</label>
-                        <input type="color" id="linkColor" name="linkColor" value="#007bff">
-                    </div>
-                    
-                    <div class="setting-group">
-                        <label for="buttonColor">Button Color</label>
-                        <input type="color" id="buttonColor" name="buttonColor" value="#a1c4fd">
-                    </div>
-                    
-                    <div class="setting-group">
-                        <label for="buttonTextColor">Button Text Color</label>
-                        <input type="color" id="buttonTextColor" name="buttonTextColor" value="#ffffff">
-                    </div>
-                </div>
-                
-                <div class="settings-section">
+                <!-- Theme Presets - Center Bottom (same width as columns) -->
+                <div class="settings-section bottom-section full-width">
                     <h2>Theme Presets</h2>
                     
                     <div class="theme-presets">
@@ -177,12 +267,38 @@
                             <h3>Sunset</h3>
                             <div class="theme-preview" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);"></div>
                         </div>
+                        
+                        <div class="theme-preset" data-theme="red">
+                            <h3>Red</h3>
+                            <div class="theme-preview" style="background: linear-gradient(135deg, #ffebee, #ffcdd2);"></div>
+                        </div>
+                        
+                        <div class="theme-preset" data-theme="purple">
+                            <h3>Purple</h3>
+                            <div class="theme-preview" style="background: linear-gradient(135deg, #f3e5f5, #e1bee7);"></div>
+                        </div>
+                        
+                        <div class="theme-preset" data-theme="orange">
+                            <h3>Orange</h3>
+                            <div class="theme-preview" style="background: linear-gradient(135deg, #fff3e0, #ffe0b2);"></div>
+                        </div>
+                        
+                        <div class="theme-preset" data-theme="teal">
+                            <h3>Teal</h3>
+                            <div class="theme-preview" style="background: linear-gradient(135deg, #e0f2f1, #b2dfdb);"></div>
+                        </div>
+                        
+                        <div class="theme-preset" data-theme="pink">
+                            <h3>Pink</h3>
+                            <div class="theme-preview" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0);"></div>
+                        </div>
                     </div>
                 </div>
                 
+                <!-- Action Buttons at the very bottom -->
                 <div class="settings-actions">
                     <button id="saveSettings" class="btn btn-primary">Save Settings</button>
-                    <button id="resetSettings" class="btn btn-secondary">Reset to Default</button>
+                    <button id="backButton" class="btn btn-secondary" data-translate="back">Back</button>
                 </div>
             </div>
         </main>

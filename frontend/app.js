@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Apply saved theme settings globally when any page loads
+    applySavedTheme();
+    
     const menuIcon = document.querySelector('.menu-icon');
     const menuNav = document.querySelector('.menu-nav');
     const langSwitcherToggle = document.getElementById('lang-switcher-toggle');
@@ -386,6 +389,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // Handle settings link navigation
+    const settingsLink = document.querySelector('a[data-translate="settings"]');
+    if (settingsLink) {
+        settingsLink.addEventListener('click', (e) => {
+            // Prevent default behavior to handle the navigation properly
+            e.preventDefault();
+            
+            // Navigate to settings page
+            window.location.href = 'settings.html';
+        });
+    }
+    
     // Close dropdown when clicking elsewhere (only if dropdown was opened by click)
     document.addEventListener('click', (e) => {
         if (profileDropdown && !profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
@@ -542,4 +557,71 @@ document.addEventListener('DOMContentLoaded', () => {
             updateProfileIcon();
         }
     });
+    
+
+});
+
+// Function to apply saved theme settings globally
+function applySavedTheme() {
+    // Define CSS custom properties and their corresponding localStorage keys
+    const themeSettings = {
+        '--background-color': 'cssprop--background-color',
+        '--text-color': 'cssprop--text-color',
+        '--accent-color': 'cssprop--accent-color',
+        '--header-color': 'cssprop--header-color',
+        '--footer-color': 'cssprop--footer-color',
+        '--card-background-color': 'cssprop--card-background-color',
+        '--background-gradient-1': 'cssprop--background-gradient-1',
+        '--background-gradient-2': 'cssprop--background-gradient-2',
+        '--background-gradient-3': 'cssprop--background-gradient-3',
+        '--background-gradient-4': 'cssprop--background-gradient-4',
+        '--background-gradient': 'cssprop--background-gradient',
+        '--main-font': 'cssprop--main-font',
+        '--font-size': 'cssprop--font-size',
+        '--header-font': 'cssprop--header-font',
+        '--link-color': 'cssprop--link-color',
+        '--button-color': 'cssprop--button-color',
+        '--button-text-color': 'cssprop--button-text-color'
+    };
+    
+    // Apply each saved theme property to the document root
+    Object.keys(themeSettings).forEach(prop => {
+        const savedValue = localStorage.getItem(themeSettings[prop]);
+        if (savedValue) {
+            document.documentElement.style.setProperty(prop, savedValue);
+        }
+    });
+    
+    // Also update body styles if needed
+    const backgroundColor = localStorage.getItem('cssprop--background-color');
+    const textColor = localStorage.getItem('cssprop--text-color');
+    const mainFont = localStorage.getItem('cssprop--main-font');
+    const backgroundGradient = localStorage.getItem('cssprop--background-gradient');
+    
+    if (backgroundColor) document.body.style.backgroundColor = backgroundColor;
+    if (textColor) document.body.style.color = textColor;
+    if (mainFont) document.body.style.fontFamily = mainFont;
+    if (backgroundGradient) {
+        document.body.style.background = backgroundGradient;
+        document.body.style.backgroundSize = '400% 400%';
+    }
+}
+
+// Listen for changes to theme settings in localStorage and apply them immediately
+window.addEventListener('storage', function(e) {
+    // Check if the changed item is a theme-related property
+    const themeProps = [
+        'cssprop--background-color', 'cssprop--text-color', 'cssprop--accent-color', 
+        'cssprop--header-color', 'cssprop--footer-color', 'cssprop--card-background-color',
+        'cssprop--background-gradient-1', 'cssprop--background-gradient-2', 
+        'cssprop--background-gradient-3', 'cssprop--background-gradient-4',
+        'cssprop--background-gradient',
+        'cssprop--main-font', 'cssprop--font-size', 'cssprop--header-font', 
+        'cssprop--link-color', 'cssprop--button-color', 'cssprop--button-text-color'
+    ];
+    
+    if (themeProps.includes(e.key)) {
+        // Apply the theme again when a theme-related setting changes
+        applySavedTheme();
+    }
 });

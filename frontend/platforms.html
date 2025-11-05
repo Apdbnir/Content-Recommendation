@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ContRec</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate-key="platforms_title">Выберите платформы</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="platforms.css">
 </head>
 <body>
     <div class="menu-icon">
@@ -52,27 +53,40 @@
         </div>
     </nav>
 
-    <div class="container">
-        <main class="content">
-            <div class="search-container">
-                <div class="search-bar-wrapper">
-                    <button id="searchButton" class="search-button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search across platforms..." autocomplete="off">
-                    <div id="searchSuggestions" class="search-suggestions" style="display: none;">
-                        <!-- Search suggestions will appear here -->
-                    </div>
-                </div>
-            </div>
-            <div id="pinterest-feed" class="feed">
-                <!-- Pinterest-style cards will be populated by JavaScript -->
-            </div>
-        </main>
+  <div class="container">
+    <h1 class="platforms-title" data-translate-key="platforms_title">Платформы</h1>
+    <p class="platforms-subtitle" data-translate-key="platforms_subtitle">Выберите платформы, которые вы используете, для более точных рекомендаций.</p>
+    <div class="platform-buttons-container">
+      <!-- Buttons will be inserted by JS -->
     </div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="translation.js"></script>
-    <script src="app.js"></script>
-    <script src="main.js"></script>
+    <div class="error-message"></div>
+    <button type="button" class="next-btn" id="nextButton">
+      <span class="next-btn-text" data-translate-key="next_button">Далее</span>
+      <svg class="next-btn-arrow" width="44" height="44" viewBox="0.0 0.0 44.0 44.0" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 22H34" stroke="#333" stroke-width="8" stroke-linecap="round"/>
+        <path d="M28 16L34 22L28 28" stroke="#333" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+  <script src="translation.js"></script>
+  <script src="app.js"></script>
+  <script src="platforms.js"></script>
+  
+  <script>
+    // Ensure translations are applied properly when the platforms page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Platforms page loaded, applying initial translations');
+      const currentLang = localStorage.getItem('language') || 'ru';
+      applyTranslations(currentLang);
+      
+      // Listen for language change events from other parts of the app
+      document.addEventListener('languageChanged', async () => {
+        console.log('Language changed event received on platforms page');
+        const lang = localStorage.getItem('language') || 'ru';
+        console.log('Applying translations for language:', lang);
+        await applyTranslations(lang);
+      });
+    });
+  </script>
 </body>
 </html>

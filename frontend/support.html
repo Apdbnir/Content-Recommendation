@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - ContRec</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .support-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            font-family: var(--main-font);
+            color: var(--main-text-color, var(--text-color));
+        }
+
+        .support-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .support-header h1 {
+            font-size: 2.5rem;
+            color: var(--main-text-color, var(--text-color));
+            margin-bottom: 15px;
+        }
+
+        .support-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .support-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-section h2 {
+            color: var(--main-text-color, var(--text-color));
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--main-text-color, var(--text-color));
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-family: var(--main-font);
+            font-size: 1rem;
+            color: var(--main-text-color, var(--text-color));
+            background: rgba(255, 255, 255, 0.9);
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(161, 196, 253, 0.3);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--button-color, #a1c4fd);
+            color: var(--button-text-color, #ffffff);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-family: var(--main-font);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-section h2 {
+            color: var(--main-text-color, var(--text-color));
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            background: var(--header-color, #f8f9fa);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: var(--accent-color);
+            color: var(--button-text-color, white);
+        }
+
+        .faq-answer {
+            padding: 15px 20px;
+            display: none;
+            background: white;
+        }
+
+        .contact-options {
+            margin-top: 25px;
+        }
+
+        .contact-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: var(--header-color, #f8f9fa);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: var(--link-color, #007bff) !important; /* Use Link Color from theme */
+        }
+
+        .contact-option:hover {
+            background: var(--accent-color);
+            color: var(--button-text-color, white) !important;
+        }
+
+        .contact-option i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        .contact-option a {
+            color: var(--link-color, #007bff) !important; /* Use Link Color from theme */
+            text-decoration: none;
+            flex: 1;
+        }
+
+        .contact-option a:hover {
+            text-decoration: underline;
+            color: var(--button-text-color, white) !important; /* Use button text color on hover to match background */
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-icon">
+        <div class="menu-icon-line"></div>
+        <div class="menu-icon-line"></div>
+        <div class="menu-icon-line"></div>
+    </div>
+
+    <div class="profile-icon" id="profileIcon">
+        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4" fill="currentColor"/>
+            <path d="M20 20C20 17.9231 20 16.3077 19.1304 15.1538C18.3643 14.133 17.133 13.6357 16 13.5C14.4615 13.5 13.2308 13.5 12 13.5C10.7692 13.5 9.53846 13.5 8 13.5C6.86704 13.6357 5.63571 14.133 4.86957 15.1538C4 16.3077 4 17.9231 4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="profile-dropdown" id="profileDropdown">
+            <!-- Dropdown content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <nav class="menu-nav">
+        <ul>
+            <li><a href="main.html" data-translate="home">Home</a></li>
+            <li><a href="platforms.html?from=support" data-translate="change_platforms_interests">Change Platforms & Interests</a></li>
+            <li><a href="settings.html" data-translate="settings">Settings</a></li>
+            <li><a href="developers.html" data-translate="developers">Developers</a></li>
+            <li><a href="support.html" data-translate="support" class="active">Support</a></li>
+            <li><a href="donate_cookies.html" data-translate="donate_cookies">На чай и печеньки</a></li>
+            <li><a href="documentation.html" data-translate="documentation">Documentation</a></li>
+            <li class="language-switcher">
+                <a href="#" id="lang-switcher-toggle" data-translate="language">Language</a>
+                <ul class="language-submenu">
+                    <li><a href="#" data-lang="ru">Русский</a></li>
+                    <li><a href="#" data-lang="en">English</a></li>
+                    <li><a href="#" data-lang="be">Беларуская</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="menu-nav-footer">
+            <a href="#" id="login-btn" data-translate="login">Login</a>
+            <a href="#" id="logout-btn" data-translate="logout" style="display: none;">Logout</a>
+            <div class="menu-nav-footer-links">
+                <a href="about.html" class="footer-link" data-translate="about">About</a>
+                <a href="help.html" class="footer-link" data-translate="help">Help</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="support-container">
+        <div class="support-header">
+            <h1><i class="fas fa-headset"></i> Support</h1>
+            <p>Need help? Contact our support team or find answers to common questions</p>
+        </div>
+
+        <div class="support-content">
+            <div class="contact-section">
+                <h2><i class="fas fa-envelope"></i> Contact Support</h2>
+                <form id="supportForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Briefly describe your issue" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="Describe your issue in detail" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+
+                <div class="contact-options">
+                    <h3 style="margin-top: 25px; margin-bottom: 15px;">Other Contact Options:</h3>
+                    <div class="contact-option">
+                        <i class="fab fa-telegram"></i>
+                        <a href="https://t.me/contrec_support" target="_blank">Contact us on Telegram</a>
+                    </div>
+                    <div class="contact-option">
+                        <i class="fas fa-comments"></i>
+                        <a href="#" id="liveChat">Live Chat Support (Available 9AM-5PM UTC)</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I connect my platforms to ContRec? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        To connect your platforms, go to the "Platforms" section in the main menu. Click on the platforms you want to connect, and you'll be redirected to their respective authentication pages. After authorizing ContRec, your content will be aggregated and personalized recommendations will be generated.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Why aren't my recommendations showing up? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Recommendations may take up to 24 hours to fully populate after connecting your platforms. If you've connected platforms but still see no recommendations, make sure you have selected your interests in the Settings section and that your platforms are properly connected with sufficient content history.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How does ContRec personalize content? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        ContRec uses a combination of your platform activity, selected interests, and preferences to generate personalized recommendations. The more you interact with content through likes, shares, and viewing time, the better the recommendations become over time.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is my data secure? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, ContRec prioritizes your privacy. We use industry-standard encryption to protect your data. Your platform credentials are never stored, and we only access the minimum data required to generate recommendations. Read our full privacy policy in the Documentation section for more details.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I change my interests or preferences? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        You can change your interests and preferences by going to Settings > Interests. Here you can select or deselect categories that match your preferences. Your recommendations will update automatically based on these changes.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I use ContRec on mobile devices? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, ContRec is fully responsive and works on all devices including smartphones and tablets. For the best experience, we recommend using the latest version of Chrome, Firefox, Safari, or Edge browsers.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle FAQ answers
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    answer.style.display = 'block';
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('supportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real implementation, you would send this data to a server
+            // For now, we'll just show an alert
+            alert(`Thank you, ${name}! Your support request has been submitted. We'll contact you at ${email} as soon as possible.`);
+            
+            // Reset the form
+            this.reset();
+        });
+
+        // Handle live chat click
+        document.getElementById('liveChat').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Our live chat support is available from 9AM to 5PM UTC. A support representative will be with you shortly!');
+        });
+
+        // Apply saved theme settings globally when any page loads
+        function applySavedTheme() {
+            // Define CSS custom properties and their corresponding localStorage keys
+            const themeSettings = {
+                '--background-color': 'cssprop--background-color',
+                '--text-color': 'cssprop--text-color',
+                '--accent-color': 'cssprop--accent-color',
+                '--header-color': 'cssprop--header-color',
+                '--footer-color': 'cssprop--footer-color',
+                '--card-background-color': 'cssprop--card-background-color',
+                '--background-gradient-1': 'cssprop--background-gradient-1',
+                '--background-gradient-2': 'cssprop--background-gradient-2',
+                '--background-gradient-3': 'cssprop--background-gradient-3',
+                '--background-gradient-4': 'cssprop--background-gradient-4',
+                '--background-gradient': 'cssprop--background-gradient',
+                '--main-font': 'cssprop--main-font',
+                '--font-size': 'cssprop--font-size',
+                '--header-font': 'cssprop--header-font',
+                '--link-color': 'cssprop--link-color',
+                '--button-color': 'cssprop--button-color',
+                '--button-text-color': 'cssprop--button-text-color'
+            };
+            
+            // Apply each saved theme property to the document root
+            Object.keys(themeSettings).forEach(prop => {
+                const savedValue = localStorage.getItem(themeSettings[prop]);
+                if (savedValue) {
+                    document.documentElement.style.setProperty(prop, savedValue);
+                }
+            });
+            
+            // Also update body styles if needed
+            const backgroundColor = localStorage.getItem('cssprop--background-color');
+            const textColor = localStorage.getItem('cssprop--text-color');
+            const mainFont = localStorage.getItem('cssprop--main-font');
+            const backgroundGradient = localStorage.getItem('cssprop--background-gradient');
+            
+            if (backgroundColor) document.body.style.backgroundColor = backgroundColor;
+            if (textColor) document.body.style.color = textColor;
+            if (mainFont) document.body.style.fontFamily = mainFont;
+            if (backgroundGradient) {
+                document.body.style.background = backgroundGradient;
+                document.body.style.backgroundSize = '400% 400%';
+            }
+        }
+
+        // Apply saved theme when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            applySavedTheme();
+            
+            const menuIcon = document.querySelector('.menu-icon');
+            const menuNav = document.querySelector('.menu-nav');
+            const langSwitcherToggle = document.getElementById('lang-switcher-toggle');
+            const loginBtn = document.getElementById('login-btn');
+            const logoutBtn = document.getElementById('logout-btn');
+
+            // --- Menu Logic ---
+            if (menuIcon && menuNav) {
+                menuIcon.addEventListener('click', () => {
+                    menuIcon.classList.toggle('open');
+                    menuNav.classList.toggle('open');
+                });
+            }
+
+            // --- Language Switcher Toggle Logic ---
+            if (langSwitcherToggle) {
+                langSwitcherToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation(); // Prevent closing the menu when clicking the language toggle
+                    const languageSwitcher = langSwitcherToggle.closest('.language-switcher');
+                    languageSwitcher.classList.toggle('expanded');
+                });
+            }
+
+            // --- Language Selection Logic ---
+            const languageLinks = document.querySelectorAll('.language-submenu a');
+            languageLinks.forEach(link => {
+                link.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const selectedLang = e.target.getAttribute('data-lang');
+                    setLanguage(selectedLang);
+                    await applyTranslations(selectedLang);
+                    document.dispatchEvent(new CustomEvent('languageChanged'));
+                    
+                    // Close the submenu after selection
+                    const languageSwitcher = langSwitcherToggle.closest('.language-switcher');
+                    languageSwitcher.classList.remove('expanded');
+                    
+                    // Also close the main menu if needed
+                    menuIcon.classList.remove('open');
+                    menuNav.classList.remove('open');
+                });
+            });
+
+            // --- Authentication Logic ---
+            // Check if user is authenticated
+            function isAuthenticated() {
+                return localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+            }
+
+            // Update login/logout buttons based on authentication status
+            function updateAuthButtons() {
+                if (isAuthenticated()) {
+                    if (loginBtn) loginBtn.style.display = 'none';
+                    if (logoutBtn) {
+                        logoutBtn.style.display = 'block';
+                        // Remove any existing event listeners to avoid duplicates
+                        logoutBtn.removeEventListener('click', handleLogout);
+                        logoutBtn.addEventListener('click', handleLogout);
+                    }
+                } else {
+                    if (loginBtn) {
+                        loginBtn.style.display = 'block';
+                        // Remove any existing event listeners to avoid duplicates
+                        loginBtn.removeEventListener('click', handleLogin);
+                        loginBtn.addEventListener('click', handleLogin);
+                    }
+                    if (logoutBtn) logoutBtn.style.display = 'none';
+                }
+            }
+            
+            // Handle login by redirecting to login page
+            function handleLogin() {
+                // Close the menu before redirecting
+                menuIcon.classList.remove('open');
+                menuNav.classList.remove('open');
+                
+                // Redirect to login page
+                window.location.href = 'login.html';
+            }
+
+            // Handle logout
+            function handleLogout() {
+                // Get user info before clearing it to remove user-specific data
+                const user = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user') || null);
+                
+                // Remove authentication tokens
+                localStorage.removeItem('authToken');
+                sessionStorage.removeItem('authToken');
+                localStorage.removeItem('user');
+                
+                // Clear platform and interest selections if we know the user
+                if (user && user.id) {
+                    localStorage.removeItem(`user_${user.id}_selectedPlatforms`);
+                    localStorage.removeItem(`user_${user.id}_selectedInterests`);
+                } else {
+                    // Fallback to remove generic keys if no user was identified
+                    localStorage.removeItem('selectedPlatforms');
+                    localStorage.removeItem('selectedInterests');
+                }
+                
+                // Redirect to index page
+                window.location.href = 'index.html';
+            }
+
+            // --- Close menu when clicking outside ---
+            document.addEventListener('click', (e) => {
+                if (menuNav.classList.contains('open')) {
+                    // Check if the click is outside the menu and menu icon
+                    if (!menuNav.contains(e.target) && !menuIcon.contains(e.target)) {
+                        menuIcon.classList.remove('open');
+                        menuNav.classList.remove('open');
+                        
+                        // Also close the language submenu if open
+                        const languageSwitcher = document.querySelector('.language-switcher');
+                        if (languageSwitcher) {
+                            languageSwitcher.classList.remove('expanded');
+                        }
+                    }
+                }
+            });
+
+            // --- Initial Load ---
+            const initialLang = getLanguage();
+            applyTranslations(initialLang);
+            
+            // Update authentication state
+            updateAuthButtons();
+
+            // Profile dropdown functionality
+            const profileIcon = document.querySelector('.profile-icon');
+            const profileDropdown = document.getElementById('profileDropdown');
+            
+            if (profileIcon) {
+                // Click on the icon itself (not the dropdown) to navigate based on current page
+                profileIcon.addEventListener('click', (e) => {
+                    // If the click is on the icon part (not the dropdown), handle navigation
+                    if (e.target.closest('.profile-icon') === profileIcon && !e.target.closest('.profile-dropdown')) {
+                        // Check if user is authenticated
+                        const isAuthenticated = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+                        
+                        // Check if we're currently on the profile page
+                        const isOnProfilePage = window.location.pathname.includes('profile.html');
+                        
+                        if (isOnProfilePage) {
+                            // If on profile page, go back to previous page
+                            window.history.back();
+                        } else if (isAuthenticated) {
+                            // If not on profile page and authenticated, go to profile page
+                            window.location.href = 'profile.html';
+                        } else {
+                            // If not authenticated, redirect to login
+                            window.location.href = 'login.html';
+                        }
+                    } else {
+                        // If click is on dropdown elements, let the default behavior apply
+                        e.stopPropagation();
+                    }
+                });
+            }
+            
+            // Handle settings link navigation
+            const settingsLink = document.querySelector('a[data-translate="settings"]');
+            if (settingsLink) {
+                settingsLink.addEventListener('click', (e) => {
+                    // Prevent default behavior to handle the navigation properly
+                    e.preventDefault();
+                    
+                    // Navigate to settings page
+                    window.location.href = 'settings.html';
+                });
+            }
+            
+            // Close dropdown when clicking elsewhere (only if dropdown was opened by click)
+            document.addEventListener('click', (e) => {
+                if (profileDropdown && !profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+                    profileDropdown.classList.remove('show');
+                }
+            });
+            
+
+            
+            // Function to update profile icon with profile picture if available
+            function updateProfileIcon() {
+                const profileIcon = document.querySelector('.profile-icon');
+                if (!profileIcon) return;
+                
+                const profilePicture = localStorage.getItem('profilePicture');
+                const profileIconSvg = profileIcon.querySelector('svg');
+                const profileIconCurrentImg = profileIcon.querySelector('img:not(.profile-photo img)'); // Don't select the profile photo in the profile page content
+                
+                // Remove current image if exists (but not the profile photo in the profile form)
+                if (profileIconCurrentImg) {
+                    profileIconCurrentImg.remove();
+                }
+                
+                if (profilePicture) {
+                    // Create new image element
+                    const img = document.createElement('img');
+                    img.src = profilePicture;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = '50%'; // Make sure it's circular
+                    
+                    // Add the image to the profile icon container
+                    // Insert it before the dropdown if it exists, otherwise at the end
+                    const dropdown = profileIcon.querySelector('.profile-dropdown');
+                    if (dropdown) {
+                        profileIcon.insertBefore(img, dropdown);
+                    } else {
+                        profileIcon.appendChild(img);
+                    }
+                    
+                    // Remove the SVG if we're adding an image
+                    if (profileIconSvg) {
+                        profileIconSvg.remove();
+                    }
+                } else {
+                    // If no profile picture, ensure the default SVG is present
+                    if (!profileIcon.querySelector('svg')) {
+                        const svg = document.createElement('svg');
+                        svg.setAttribute('width', '100%');
+                        svg.setAttribute('height', '100%');
+                        svg.setAttribute('viewBox', '0 0 24 24');
+                        svg.setAttribute('fill', 'none');
+                        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+                        
+                        svg.innerHTML = `
+                            <circle cx="12" cy="8" r="4" fill="currentColor"/>
+                            <path d="M20 20C20 17.9231 20 16.3077 19.1304 15.1538C18.3643 14.133 17.133 13.6357 16 13.5C14.4615 13.5 13.2308 13.5 12 13.5C10.7692 13.5 9.53846 13.5 8 13.5C6.86704 13.6357 5.63571 14.133 4.86957 15.1538C4 16.3077 4 17.9231 4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        `;
+                        
+                        // Insert SVG before dropdown if it exists
+                        const dropdown = profileIcon.querySelector('.profile-dropdown');
+                        if (dropdown) {
+                            profileIcon.insertBefore(svg, dropdown);
+                        } else {
+                            profileIcon.appendChild(svg);
+                        }
+                    }
+                }
+            }
+            
+            // Function to update profile dropdown content based on auth status
+            function updateProfileDropdown() {
+                if (!profileDropdown) return;
+                
+                const isAuthenticated = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+                const isOnProfilePage = window.location.pathname.includes('profile.html');
+                
+                if (isAuthenticated) {
+                    // User is authenticated - show profile options
+                    if (isOnProfilePage) {
+                        // When on profile page, show back option instead of additional logout
+                        profileDropdown.innerHTML = `
+                            <a href="profile.html" data-translate="edit_profile">Edit Profile</a>
+                            <div class="divider"></div>
+                            <a href="#" id="backBtn" data-translate="back">Back</a>
+                            <a href="#" id="logoutDropdownBtn" data-translate="logout">Logout</a>
+                        `;
+                    } else {
+                        // On other pages, show edit profile and logout options
+                        profileDropdown.innerHTML = `
+                            <a href="profile.html" data-translate="edit_profile">Edit Profile</a>
+                            <div class="divider"></div>
+                            <a href="#" id="logoutDropdownBtn" data-translate="logout">Logout</a>
+                        `;
+                    }
+                    
+                    // Add event listener to logout button in dropdown
+                    const logoutBtn = document.getElementById('logoutDropdownBtn');
+                    if (logoutBtn) {
+                        logoutBtn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            handleLogout();
+                        });
+                    }
+                    
+                    // Add event listener to back button if on profile page
+                    const backBtn = document.getElementById('backBtn');
+                    if (backBtn && isOnProfilePage) {
+                        backBtn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            window.history.back();
+                        });
+                    }
+                } else {
+                    // User is not authenticated - show auth options
+                    profileDropdown.innerHTML = `
+                        <a href="login.html" data-translate="login">Login</a>
+                        <a href="register.html" data-translate="register">Register</a>
+                    `;
+                }
+                
+                // Apply translations to dropdown items
+                const dropdownLinks = profileDropdown.querySelectorAll('a');
+                dropdownLinks.forEach(link => {
+                    const key = link.getAttribute('data-translate');
+                    if (key) {
+                        const currentLang = localStorage.getItem('language') || 'ru';
+                        let translations = {};
+                        if (currentLang === 'ru') {
+                            translations = { edit_profile: 'Редактировать профиль', logout: 'Выйти', back: 'Вернуться', login: 'Войти', register: 'Зарегистрироваться' };
+                        } else if (currentLang === 'be') { 
+                            translations = { edit_profile: 'Рэдагаваць профіль', logout: 'Выйсці', back: 'Вярнуцца', login: 'Увайсці', register: 'Зарэгістравацца' };
+                        } else {
+                            translations = { edit_profile: 'Edit Profile', logout: 'Logout', back: 'Back', login: 'Login', register: 'Register' };
+                        }
+                        
+                        link.textContent = translations[key] || key;
+                    }
+                });
+            }
+            
+            // Initialize profile dropdown with correct content
+            if (profileDropdown) {
+                updateProfileDropdown();
+            }
+            
+            // Initialize profile icon with profile picture if available
+            updateProfileIcon();
+            
+            // Listen for changes to profile picture in localStorage
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'profilePicture') {
+                    updateProfileIcon();
+                }
+            });
+        });
+
+        // Basic translation function (placeholder)
+        function setLanguage(lang) {
+            localStorage.setItem('language', lang);
+        }
+
+        function getLanguage() {
+            return localStorage.getItem('language') || 'en';
+        }
+
+        async function applyTranslations(lang) {
+            // Simple placeholder implementation
+            // In a real app, this would load actual translations
+        }
+    </script>
+</body>
+</html>

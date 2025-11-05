@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - ContRec</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <div class="menu-icon">
+        <div class="menu-icon-line"></div>
+        <div class="menu-icon-line"></div>
+        <div class="menu-icon-line"></div>
+    </div>
+
+    <div class="profile-icon" id="profileIcon">
+        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4" fill="currentColor"/>
+            <path d="M20 20C20 17.9231 20 16.3077 19.1304 15.1538C18.3643 14.133 17.133 13.6357 16 13.5C14.4615 13.5 13.2308 13.5 12 13.5C10.7692 13.5 9.53846 13.5 8 13.5C6.86704 13.6357 5.63571 14.133 4.86957 15.1538C4 16.3077 4 17.9231 4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="profile-dropdown" id="profileDropdown">
+            <!-- Dropdown content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <nav class="menu-nav">
+        <ul>
+            <li><a href="main.html" data-translate="home">Home</a></li>
+            <li><a href="platforms.html?from=main" data-translate="change_platforms_interests">Change Platforms & Interests</a></li>
+            <li><a href="settings.html" data-translate="settings">Settings</a></li>
+            <li><a href="developers.html" data-translate="developers">Developers</a></li>
+            <li><a href="support.html" data-translate="support">Support</a></li>
+            <li><a href="donate_cookies.html" data-translate="donate_cookies">На чай и печеньки</a></li>
+            <li><a href="documentation.html" data-translate="documentation">Documentation</a></li>
+            <li class="language-switcher">
+                <a href="#" id="lang-switcher-toggle" data-translate="language">Language</a>
+                <ul class="language-submenu">
+                    <li><a href="#" data-lang="ru">Русский</a></li>
+                    <li><a href="#" data-lang="en">English</a></li>
+                    <li><a href="#" data-lang="be">Беларуская</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="menu-nav-footer">
+            <a href="#" id="login-btn" data-translate="login">Login</a>
+            <a href="#" id="logout-btn" data-translate="logout" style="display: none;">Logout</a>
+            <div class="menu-nav-footer-links">
+                <a href="about.html" class="footer-link" data-translate="about">About</a>
+                <a href="help.html" class="footer-link" data-translate="help">Help</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="content">
+            <div class="profile-container">
+                <h1 class="page-title" data-translate="profile">Profile</h1>
+                
+                <div class="profile-form-container">
+                    <div class="profile-header">
+                        <div class="profile-photo-container">
+                            <div class="profile-photo" id="profilePhoto">
+                                <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="8" r="4" fill="currentColor"/>
+                                    <path d="M20 20C20 17.9231 20 16.3077 19.1304 15.1538C18.3643 14.133 17.133 13.6357 16 13.5C14.4615 13.5 13.2308 13.5 12 13.5C10.7692 13.5 9.53846 13.5 8 13.5C6.86704 13.6357 5.63571 14.133 4.86957 15.1538C4 16.3077 4 17.9231 4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <label for="profilePictureUpload" class="upload-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 4H17C18.1046 4 19 4.89543 19 6V18C19 19.1046 18.1046 20 17 20H7C5.89543 20 5 19.1046 5 18V6C5 4.89543 5.89543 4 7 4H7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M9 12L12 15L15 12M12 8V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <input type="file" id="profilePictureUpload" accept="image/*" style="display: none;">
+                            </label>
+                        </div>
+                        <div class="profile-bio">
+                            <textarea id="bio" name="bio" rows="3" placeholder="Tell us about yourself..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2 data-translate="basic_info">Basic Information</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName" data-translate="first_name">First Name</label>
+                                <input type="text" id="firstName" name="firstName">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" data-translate="last_name">Last Name</label>
+                                <input type="text" id="lastName" name="lastName">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="username" data-translate="username">Username</label>
+                            <input type="text" id="username" name="username">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" data-translate="email">Email</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="birthDate" data-translate="birth_date">Birth Date</label>
+                                <input type="date" id="birthDate" name="birthDate">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="gender" data-translate="gender">Gender</label>
+                                <select id="gender" name="gender">
+                                    <option value="" data-translate="select_gender" selected>Choose...</option>
+                                    <option value="male" data-translate="male">Male</option>
+                                    <option value="female" data-translate="female">Female</option>
+                                    <option value="other" data-translate="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2 data-translate="location_info">Location</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="country" data-translate="country">Country</label>
+                                <select id="country" name="country">
+                                    <option value="" data-translate="select_country" selected>Choose...</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="Belarus">Belarus</option>
+                                    <option value="USA">USA</option>
+                                    <option value="Other" data-translate="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="city" data-translate="city">City</label>
+                                <input type="text" id="city" name="city">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address" data-translate="address">Address</label>
+                            <input type="text" id="address" name="address" placeholder="Street address, apartment, etc.">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2 data-translate="preferences">Preferences</h2>
+                        <div class="form-group">
+                            <label for="bio" data-translate="bio">Bio</label>
+                            <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="website" data-translate="website">Website</label>
+                            <input type="url" id="website" name="website" placeholder="https://your-website.com">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="newsletter" name="newsletter">
+                                    <span data-translate="newsletter_subscription">Subscribe to newsletter</span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="notifications" name="notifications">
+                                    <span data-translate="enable_notifications">Enable notifications</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2 data-translate="social_links">Social Links</h2>
+                        <div class="form-group">
+                            <label for="socialMedia">Social Media Profiles</label>
+                            <div class="social-links-container">
+                                <div class="social-link-item">
+                                    <select class="social-platform">
+                                        <option value="">Select platform...</option>
+                                        <option value="facebook">Facebook</option>
+                                        <option value="instagram">Instagram</option>
+                                        <option value="twitter">Twitter (X)</option>
+                                        <option value="linkedin">LinkedIn</option>
+                                        <option value="github">GitHub</option>
+                                        <option value="youtube">YouTube</option>
+                                        <option value="tiktok">TikTok</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <input type="url" class="social-url" placeholder="https://profile-url">
+                                </div>
+                                
+                                <button type="button" id="addSocialLink" class="add-btn" data-translate="add_link">Add Link</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2 data-translate="additional_info">Additional Information</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profession" data-translate="profession">Profession</label>
+                                <input type="text" id="profession" name="profession" placeholder="Your job title">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="education" data-translate="education">Education</label>
+                                <input type="text" id="education" name="education" placeholder="School, university, etc.">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interestsText" data-translate="interests">Interests</label>
+                            <textarea id="interestsText" name="interestsText" rows="3" placeholder="Your interests, hobbies, etc."></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="showEmail" name="showEmail">
+                                    <span data-translate="show_email_publicly">Show email publicly</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelBtn" data-translate="cancel">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="saveBtn" data-translate="save_changes">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="translation.js"></script>
+    <script src="app.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

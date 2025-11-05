@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ContRec</title>
+    <title data-translate-key="donate_cookies">Donate Cookies</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="donate_cookies.css">
 </head>
 <body>
     <div class="menu-icon">
@@ -31,7 +32,7 @@
             <li><a href="settings.html" data-translate="settings">Settings</a></li>
             <li><a href="developers.html" data-translate="developers">Developers</a></li>
             <li><a href="support.html" data-translate="support">Support</a></li>
-            <li><a href="donate_cookies.html" data-translate="donate_cookies">На чай и печеньки</a></li>
+            <li><a href="donate_cookies.html" data-translate="donate_cookies" class="active">На чай и печеньки</a></li>
             <li><a href="documentation.html" data-translate="documentation">Documentation</a></li>
             <li class="language-switcher">
                 <a href="#" id="lang-switcher-toggle" data-translate="language">Language</a>
@@ -54,25 +55,56 @@
 
     <div class="container">
         <main class="content">
-            <div class="search-container">
-                <div class="search-bar-wrapper">
-                    <button id="searchButton" class="search-button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search across platforms..." autocomplete="off">
-                    <div id="searchSuggestions" class="search-suggestions" style="display: none;">
-                        <!-- Search suggestions will appear here -->
+            <div class="donate-container">
+                <h1 class="page-title" data-translate-key="donate_cookies">На чай и печеньки</h1>
+                
+                <div class="counter-display">
+                    <div class="counter-box">
+                        <h2 data-translate-key="your_cookies">Your Cookies</h2>
+                        <div class="counter-value" id="user-cookies">0</div>
+                    </div>
+                    
+                    <div class="counter-box">
+                        <h2 data-translate-key="your_tea">Your Tea</h2>
+                        <div class="counter-value" id="user-tea">0</div>
+                    </div>
+                    
+                    <div class="counter-box">
+                        <h2 data-translate-key="total_cookies">Total Cookies</h2>
+                        <div class="counter-value" id="total-cookies">0</div>
+                    </div>
+                    
+                    <div class="counter-box">
+                        <h2 data-translate-key="total_tea">Total Tea</h2>
+                        <div class="counter-value" id="total-tea">0</div>
                     </div>
                 </div>
-            </div>
-            <div id="pinterest-feed" class="feed">
-                <!-- Pinterest-style cards will be populated by JavaScript -->
+                
+                <div class="clicker-container">
+                    <div class="clicker-item">
+                        <button class="clicker-button" id="cookie-button">
+                            <span class="clicker-emoji">🍪</span>
+                            <span class="clicker-text" data-translate-key="click_cookie">Click for Cookie</span>
+                        </button>
+                    </div>
+                    
+                    <div class="clicker-item">
+                        <button class="clicker-button" id="tea-button">
+                            <span class="clicker-emoji">🍵</span>
+                            <span class="clicker-text" data-translate-key="click_tea">Click for Tea</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="message-area">
+                    <p id="message" data-translate-key="click_message">Click on the cookie or tea to start donating!</p>
+                </div>
             </div>
         </main>
     </div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <script src="translation.js"></script>
     <script src="app.js"></script>
-    <script src="main.js"></script>
+    <script src="donate_cookies.js"></script>
 </body>
 </html>

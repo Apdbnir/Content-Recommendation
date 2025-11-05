@@ -1,28 +1,28 @@
+// Helper function to get session token for non-authenticated users
+function getSessionToken() {
+    let sessionToken = localStorage.getItem('sessionToken');
+    if (!sessionToken) {
+        // Create a new session token
+        sessionToken = `sess_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        localStorage.setItem('sessionToken', sessionToken);
+    }
+    return sessionToken;
+}
+
+// Helper function to get auth token with fallback to session token
+function getAuthHeader() {
+    const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+
+    if (token) {
+        return { 'Authorization': `Bearer ${token}` };
+    } else {
+        // For non-authenticated users, send session token
+        return { 'X-Session-Token': getSessionToken() };
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const feed = document.getElementById('pinterest-feed');
-    
-    // Helper function to get session token for non-authenticated users
-    function getSessionToken() {
-        let sessionToken = localStorage.getItem('sessionToken');
-        if (!sessionToken) {
-            // Create a new session token
-            sessionToken = `sess_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-            localStorage.setItem('sessionToken', sessionToken);
-        }
-        return sessionToken;
-    }
-    
-    // Helper function to get auth token with fallback to session token
-    function getAuthHeader() {
-        const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
-        
-        if (token) {
-            return { 'Authorization': `Bearer ${token}` };
-        } else {
-            // For non-authenticated users, send session token
-            return { 'X-Session-Token': getSessionToken() };
-        }
-    }
     
     // Helper function to get user-specific storage key
     function getUserStorageKey(keyName) {

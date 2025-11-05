@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title data-translate-key="documentation">Documentation</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="start.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="documentation.css">
 </head>
 <body>
     <div class="menu-icon">
@@ -30,8 +31,8 @@
             <li><a href="platforms.html?from=main" data-translate="change_platforms_interests">Change Platforms & Interests</a></li>
             <li><a href="settings.html" data-translate="settings">Settings</a></li>
             <li><a href="developers.html" data-translate="developers">Developers</a></li>
-            <li><a href="donate_cookies.html" data-translate="donate_cookies">На чай и печеньки</a></li>
-            <li><a href="documentation.html" data-translate="documentation">Documentation</a></li>
+            <li><a href="support.html" data-translate="support">Support</a></li>
+            <li><a href="documentation.html" data-translate="documentation" class="active">Documentation</a></li>
             <li class="language-switcher">
                 <a href="#" id="lang-switcher-toggle" data-translate="language">Language</a>
                 <ul class="language-submenu">
@@ -45,17 +46,30 @@
             <a href="#" id="login-btn" data-translate="login">Login</a>
             <a href="#" id="logout-btn" data-translate="logout" style="display: none;">Logout</a>
             <div class="menu-nav-footer-links">
-                <a href="#" class="footer-link" data-translate="about">About</a>
-                <a href="#" class="footer-link" data-translate="help">Help</a>
+                <a href="about.html" class="footer-link" data-translate="about">About</a>
+                <a href="help.html" class="footer-link" data-translate="help">Help</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <div id="startButton" data-translate-key="start_button">Начать</div>
+        <main class="content">
+            <div class="documentation-container">
+                <h1 class="page-title" data-translate-key="documentation">Documentation</h1>
+                
+                <div class="pdf-container">
+                    <div id="pdf-loading" class="loading-message">
+                        <p data-translate-key="loading_documentation">Loading Documentation...</p>
+                    </div>
+                    <div id="pdf-container"></div>
+                </div>
+            </div>
+        </main>
     </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
     <script src="translation.js"></script>
     <script src="app.js"></script>
-    <script src="start.js"></script>
+    <script src="documentation.js"></script>
 </body>
 </html>

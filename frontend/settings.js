@@ -11,8 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add event listener to save button
     document.getElementById('saveSettings').addEventListener('click', saveSettings);
     
-    // Add event listener to reset button
-    document.getElementById('resetSettings').addEventListener('click', resetSettings);
+    // Add event listener to back button
+    const backButton = document.getElementById('backButton');
+    if (backButton) {
+        backButton.addEventListener('click', () => {
+            // Apply the current theme globally before navigating back
+            applyThemeGlobally();
+            window.history.back();
+        });
+    }
+    
+    // Initialize the theme preview
+    updateThemePreview();
 });
 
 function setupEventListeners() {
@@ -55,6 +65,22 @@ function applySetting(event) {
         case 'cardBackgroundColor':
             document.documentElement.style.setProperty('--card-background-color', value);
             break;
+        case 'backgroundGradient1':
+            document.documentElement.style.setProperty('--background-gradient-1', value);
+            updateBackgroundGradient();
+            break;
+        case 'backgroundGradient2':
+            document.documentElement.style.setProperty('--background-gradient-2', value);
+            updateBackgroundGradient();
+            break;
+        case 'backgroundGradient3':
+            document.documentElement.style.setProperty('--background-gradient-3', value);
+            updateBackgroundGradient();
+            break;
+        case 'backgroundGradient4':
+            document.documentElement.style.setProperty('--background-gradient-4', value);
+            updateBackgroundGradient();
+            break;
         case 'mainFont':
             document.documentElement.style.setProperty('--main-font', value);
             document.body.style.fontFamily = value;
@@ -75,18 +101,126 @@ function applySetting(event) {
         case 'buttonTextColor':
             document.documentElement.style.setProperty('--button-text-color', value);
             break;
+        case 'headerTextColor':
+            document.documentElement.style.setProperty('--header-text-color', value);
+            break;
+        case 'mainTextColor':
+            document.documentElement.style.setProperty('--main-text-color', value);
+            break;
+        case 'hintTextColor':
+            document.documentElement.style.setProperty('--hint-text-color', value);
+            break;
     }
     
     // Store the setting in localStorage
     localStorage.setItem(`setting_${settingName}`, value);
+    
+    // Update the theme preview
+    updateThemePreview();
+}
+
+// Function to update the background gradient based on all gradient colors
+function updateBackgroundGradient() {
+    const grad1 = localStorage.getItem('setting_backgroundGradient1') || '#ff9a9e';
+    const grad2 = localStorage.getItem('setting_backgroundGradient2') || '#fad0c4';
+    const grad3 = localStorage.getItem('setting_backgroundGradient3') || '#a1c4fd';
+    const grad4 = localStorage.getItem('setting_backgroundGradient4') || '#c2e9fb';
+    
+    const gradientValue = `linear-gradient(-45deg, ${grad1}, ${grad2}, ${grad3}, ${grad4})`;
+    document.documentElement.style.setProperty('--background-gradient', gradientValue);
+    document.body.style.background = gradientValue;
+    document.body.style.backgroundSize = '400% 400%';
+}
+
+// Update the theme preview based on current settings
+function updateThemePreview() {
+    const backgroundColor = document.getElementById('backgroundColor')?.value || '#ffffff';
+    const textColor = document.getElementById('textColor')?.value || '#333333';
+    const headerColor = document.getElementById('headerColor')?.value || '#f8f9fa';
+    const footerColor = document.getElementById('footerColor')?.value || '#e9ecef';
+    const cardBackgroundColor = document.getElementById('cardBackgroundColor')?.value || '#ffffff';
+    const backgroundGradient1 = document.getElementById('backgroundGradient1')?.value || '#ff9a9e';
+    const backgroundGradient2 = document.getElementById('backgroundGradient2')?.value || '#fad0c4';
+    const backgroundGradient3 = document.getElementById('backgroundGradient3')?.value || '#a1c4fd';
+    const backgroundGradient4 = document.getElementById('backgroundGradient4')?.value || '#c2e9fb';
+    const mainFont = document.getElementById('mainFont')?.value || "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif";
+    const fontSize = document.getElementById('fontSize')?.value || '16px';
+    const headerFont = document.getElementById('headerFont')?.value || "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif";
+    const headerTextColor = document.getElementById('headerTextColor')?.value || '#333333';
+    const mainTextColor = document.getElementById('mainTextColor')?.value || '#333333';
+    const hintTextColor = document.getElementById('hintTextColor')?.value || '#6c757d';
+    const linkColor = document.getElementById('linkColor')?.value || '#007bff';
+    const buttonColor = document.getElementById('buttonColor')?.value || '#a1c4fd';
+    const buttonTextColor = document.getElementById('buttonTextColor')?.value || '#ffffff';
+    
+    // Update preview elements
+    const previewContent = document.getElementById('previewContent');
+    const previewHeader = document.getElementById('previewHeader');
+    const previewFooter = document.getElementById('previewFooter');
+    const previewCard = document.getElementById('previewCard');
+    const previewButton = document.getElementById('previewButton');
+    
+    if (previewContent) {
+        // Create a combined background that matches the main page
+        const previewBackground = backgroundColor !== '#ffffff' 
+            ? backgroundColor 
+            : `linear-gradient(-45deg, ${backgroundGradient1}, ${backgroundGradient2}, ${backgroundGradient3}, ${backgroundGradient4})`;
+        previewContent.style.background = previewBackground;
+        previewContent.style.backgroundSize = '400% 400%';
+        previewContent.style.color = mainTextColor || textColor;
+        previewContent.style.fontFamily = mainFont;
+        previewContent.style.fontSize = fontSize;
+    }
+    
+    if (previewHeader) {
+        previewHeader.style.backgroundColor = headerColor;
+        previewHeader.style.color = headerTextColor;
+    }
+    
+    if (previewFooter) {
+        previewFooter.style.backgroundColor = footerColor;
+    }
+    
+    if (previewCard) {
+        previewCard.style.backgroundColor = cardBackgroundColor;
+        previewCard.style.color = mainTextColor || textColor;
+        previewCard.style.fontFamily = mainFont;
+    }
+    
+    if (previewButton) {
+        previewButton.style.backgroundColor = buttonColor;
+        previewButton.style.color = buttonTextColor;
+        previewButton.style.fontFamily = mainFont;
+    }
+    
+    // Also update any links in the preview
+    const previewLinks = document.querySelectorAll('#previewContent a');
+    previewLinks.forEach(link => {
+        link.style.color = linkColor;
+    });
+    
+    // Update preview header text color
+    const previewTitle = document.querySelector('#previewContent h3');
+    if (previewTitle) {
+        previewTitle.style.color = headerTextColor;
+    }
+    
+    // Update preview text color
+    const previewText = document.querySelector('#previewContent p');
+    if (previewText) {
+        previewText.style.color = mainTextColor || textColor;
+    }
 }
 
 function loadSettings() {
     // Define all possible settings
     const settings = [
         'backgroundColor', 'textColor', 'accentColor', 'headerColor', 
-        'footerColor', 'cardBackgroundColor', 'mainFont', 'fontSize', 
-        'headerFont', 'linkColor', 'buttonColor', 'buttonTextColor'
+        'footerColor', 'cardBackgroundColor', 'backgroundGradient1',
+        'backgroundGradient2', 'backgroundGradient3', 'backgroundGradient4',
+        'mainFont', 'fontSize', 'headerFont', 'linkColor', 
+        'buttonColor', 'buttonTextColor', 'headerTextColor',
+        'mainTextColor', 'hintTextColor'
     ];
     
     // Load each setting from localStorage if available
@@ -99,9 +233,11 @@ function loadSettings() {
                 inputElement.value = savedValue;
                 
                 // Apply the setting
-                const event = new Event('input', { bubbles: true });
+                let event;
                 if (inputElement.type === 'select-one') {
                     event = new Event('change', { bubbles: true });
+                } else {
+                    event = new Event('input', { bubbles: true });
                 }
                 inputElement.dispatchEvent(event);
             }
@@ -116,9 +252,17 @@ function loadSettings() {
         '--header-color': localStorage.getItem('cssprop--header-color'),
         '--footer-color': localStorage.getItem('cssprop--footer-color'),
         '--card-background-color': localStorage.getItem('cssprop--card-background-color'),
+        '--background-gradient-1': localStorage.getItem('cssprop--background-gradient-1'),
+        '--background-gradient-2': localStorage.getItem('cssprop--background-gradient-2'),
+        '--background-gradient-3': localStorage.getItem('cssprop--background-gradient-3'),
+        '--background-gradient-4': localStorage.getItem('cssprop--background-gradient-4'),
+        '--background-gradient': localStorage.getItem('cssprop--background-gradient'),
         '--main-font': localStorage.getItem('cssprop--main-font'),
         '--font-size': localStorage.getItem('cssprop--font-size'),
         '--header-font': localStorage.getItem('cssprop--header-font'),
+        '--header-text-color': localStorage.getItem('cssprop--header-text-color'),
+        '--main-text-color': localStorage.getItem('cssprop--main-text-color'),
+        '--hint-text-color': localStorage.getItem('cssprop--hint-text-color'),
         '--link-color': localStorage.getItem('cssprop--link-color'),
         '--button-color': localStorage.getItem('cssprop--button-color'),
         '--button-text-color': localStorage.getItem('cssprop--button-text-color')
@@ -129,6 +273,9 @@ function loadSettings() {
             document.documentElement.style.setProperty(prop, value);
         }
     }
+    
+    // Update the theme preview after loading settings
+    setTimeout(updateThemePreview, 0);
 }
 
 function saveSettings() {
@@ -138,12 +285,19 @@ function saveSettings() {
         localStorage.setItem(`setting_${input.name}`, input.value);
     });
     
-    // Save current CSS custom properties
+    // Apply the current theme globally to the entire project
+    applyThemeGlobally();
+    
+    // Save current CSS custom properties to apply globally
     const cssProps = [
         '--background-color', '--text-color', '--accent-color', 
         '--header-color', '--footer-color', '--card-background-color',
+        '--background-gradient-1', '--background-gradient-2', 
+        '--background-gradient-3', '--background-gradient-4',
+        '--background-gradient',
         '--main-font', '--font-size', '--header-font', 
-        '--link-color', '--button-color', '--button-text-color'
+        '--link-color', '--button-color', '--button-text-color',
+        '--header-text-color', '--main-text-color', '--hint-text-color'
     ];
     
     cssProps.forEach(prop => {
@@ -157,6 +311,46 @@ function saveSettings() {
     showSaveNotification();
 }
 
+// Function to apply the theme globally across the entire project
+function applyThemeGlobally() {
+    // Get the current values from the input fields and apply them globally
+    const settings = {
+        'backgroundColor': '--background-color',
+        'textColor': '--text-color',
+        'accentColor': '--accent-color',
+        'headerColor': '--header-color',
+        'footerColor': '--footer-color',
+        'cardBackgroundColor': '--card-background-color',
+        'backgroundGradient1': '--background-gradient-1',
+        'backgroundGradient2': '--background-gradient-2',
+        'backgroundGradient3': '--background-gradient-3',
+        'backgroundGradient4': '--background-gradient-4',
+        'mainFont': '--main-font',
+        'fontSize': '--font-size',
+        'headerFont': '--header-font',
+        'linkColor': '--link-color',
+        'buttonColor': '--button-color',
+        'buttonTextColor': '--button-text-color',
+        'headerTextColor': '--header-text-color',
+        'mainTextColor': '--main-text-color',
+        'hintTextColor': '--hint-text-color'
+    };
+    
+    // Apply CSS custom properties to document root so they affect the entire project
+    Object.keys(settings).forEach(key => {
+        const inputElement = document.querySelector(`[name="${key}"]`);
+        if (inputElement) {
+            const currentValue = inputElement.value;
+            document.documentElement.style.setProperty(settings[key], currentValue);
+        }
+    });
+    
+    // Also update the background gradient
+    updateBackgroundGradient();
+}
+
+// Note: The resetSettings function is kept for potential future use,
+// but it's no longer called since the reset button was removed
 function resetSettings() {
     // Reset all inputs to default values
     document.getElementById('backgroundColor').value = '#ffffff';
@@ -165,9 +359,16 @@ function resetSettings() {
     document.getElementById('headerColor').value = '#f8f9fa';
     document.getElementById('footerColor').value = '#e9ecef';
     document.getElementById('cardBackgroundColor').value = '#ffffff';
-    document.getElementById('mainFont').value = 'Arial, sans-serif';
+    document.getElementById('backgroundGradient1').value = '#ff9a9e';
+    document.getElementById('backgroundGradient2').value = '#fad0c4';
+    document.getElementById('backgroundGradient3').value = '#a1c4fd';
+    document.getElementById('backgroundGradient4').value = '#c2e9fb';
+    document.getElementById('mainFont').value = "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif";
     document.getElementById('fontSize').value = '16px';
-    document.getElementById('headerFont').value = 'Arial, sans-serif';
+    document.getElementById('headerFont').value = "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif";
+    document.getElementById('headerTextColor').value = '#333333';
+    document.getElementById('mainTextColor').value = '#333333';
+    document.getElementById('hintTextColor').value = '#6c757d';
     document.getElementById('linkColor').value = '#007bff';
     document.getElementById('buttonColor').value = '#a1c4fd';
     document.getElementById('buttonTextColor').value = '#ffffff';
@@ -175,9 +376,11 @@ function resetSettings() {
     // Apply all default settings
     const inputs = document.querySelectorAll('input[type="color"], select');
     inputs.forEach(input => {
-        const event = new Event('input', { bubbles: true });
+        let event;
         if (input.type === 'select-one') {
             event = new Event('change', { bubbles: true });
+        } else {
+            event = new Event('input', { bubbles: true });
         }
         input.dispatchEvent(event);
     });
@@ -189,6 +392,33 @@ function resetSettings() {
             localStorage.removeItem(key);
         }
     });
+    
+    // Update the theme preview after resetting
+    updateThemePreview();
+    
+    // Reset CSS custom properties to defaults
+    document.documentElement.style.setProperty('--background-color', '#ffffff');
+    document.documentElement.style.setProperty('--text-color', '#333333');
+    document.documentElement.style.setProperty('--accent-color', '#a1c4fd');
+    document.documentElement.style.setProperty('--header-color', '#f8f9fa');
+    document.documentElement.style.setProperty('--footer-color', '#e9ecef');
+    document.documentElement.style.setProperty('--card-background-color', '#ffffff');
+    document.documentElement.style.setProperty('--background-gradient-1', '#ff9a9e');
+    document.documentElement.style.setProperty('--background-gradient-2', '#fad0c4');
+    document.documentElement.style.setProperty('--background-gradient-3', '#a1c4fd');
+    document.documentElement.style.setProperty('--background-gradient-4', '#c2e9fb');
+    document.documentElement.style.setProperty('--main-font', "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif");
+    document.documentElement.style.setProperty('--font-size', '16px');
+    document.documentElement.style.setProperty('--header-font', "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif");
+    document.documentElement.style.setProperty('--header-text-color', '#333333');
+    document.documentElement.style.setProperty('--main-text-color', '#333333');
+    document.documentElement.style.setProperty('--hint-text-color', '#6c757d');
+    document.documentElement.style.setProperty('--link-color', '#007bff');
+    document.documentElement.style.setProperty('--button-color', '#a1c4fd');
+    document.documentElement.style.setProperty('--button-text-color', '#ffffff');
+    
+    // Update background gradient
+    updateBackgroundGradient();
     
     // Show reset notification
     showResetNotification();
@@ -224,9 +454,16 @@ function applyTheme(theme) {
                 headerColor: '#f8f9fa',
                 footerColor: '#e9ecef',
                 cardBackgroundColor: '#ffffff',
-                mainFont: 'Arial, sans-serif',
+                backgroundGradient1: '#ff9a9e',
+                backgroundGradient2: '#fad0c4',
+                backgroundGradient3: '#a1c4fd',
+                backgroundGradient4: '#c2e9fb',
+                mainFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif",
                 fontSize: '16px',
-                headerFont: 'Arial, sans-serif',
+                headerFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif",
+                headerTextColor: '#333333',
+                mainTextColor: '#333333',
+                hintTextColor: '#6c757d',
                 linkColor: '#007bff',
                 buttonColor: '#a1c4fd',
                 buttonTextColor: '#ffffff'
@@ -235,30 +472,44 @@ function applyTheme(theme) {
         case 'dark':
             settings = {
                 backgroundColor: '#121212',
-                textColor: '#ffffff',
-                accentColor: '#bb86fc',
+                textColor: '#ffffff', // Changed to white text
+                accentColor: '#9e9e9e', // Changed to grey
                 headerColor: '#1e1e1e',
                 footerColor: '#2d2d2d',
                 cardBackgroundColor: '#1e1e1e',
-                mainFont: 'Arial, sans-serif',
+                backgroundGradient1: '#121212',
+                backgroundGradient2: '#1e1e1e',
+                backgroundGradient3: '#2d2d2d',
+                backgroundGradient4: '#434343',
+                mainFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Changed to Nunito font
                 fontSize: '16px',
-                headerFont: 'Arial, sans-serif',
-                linkColor: '#bb86fc',
-                buttonColor: '#bb86fc',
-                buttonTextColor: '#000000'
+                headerFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Changed to Nunito font
+                headerTextColor: '#ffffff',
+                mainTextColor: '#ffffff',
+                hintTextColor: '#95a5a6',
+                linkColor: '#9e9e9e', // Changed to grey
+                buttonColor: '#9e9e9e', // Changed to grey
+                buttonTextColor: '#000000' // Keep black text on buttons for contrast
             };
             break;
         case 'blue':
             settings = {
                 backgroundColor: '#e3f2fd',
-                textColor: '#1a237e',
+                textColor: '#000000', // Changed to black text
                 accentColor: '#1976d2',
                 headerColor: '#bbdefb',
                 footerColor: '#90caf9',
                 cardBackgroundColor: '#ffffff',
-                mainFont: 'Arial, sans-serif',
+                backgroundGradient1: '#e3f2fd',
+                backgroundGradient2: '#bbdefb',
+                backgroundGradient3: '#90caf9',
+                backgroundGradient4: '#c5e1ff',
+                mainFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Changed to Nunito font
                 fontSize: '16px',
-                headerFont: 'Arial, sans-serif',
+                headerFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Changed to Nunito font
+                headerTextColor: '#1976d2',
+                mainTextColor: '#000000',
+                hintTextColor: '#64b5f6',
                 linkColor: '#1976d2',
                 buttonColor: '#2196f3',
                 buttonTextColor: '#ffffff'
@@ -267,14 +518,21 @@ function applyTheme(theme) {
         case 'green':
             settings = {
                 backgroundColor: '#e8f5e9',
-                textColor: '#1b5e20',
+                textColor: '#000000', // Changed to black text
                 accentColor: '#4caf50',
                 headerColor: '#c8e6c9',
                 footerColor: '#a5d6a7',
                 cardBackgroundColor: '#ffffff',
-                mainFont: 'Arial, sans-serif',
+                backgroundGradient1: '#e8f5e9',
+                backgroundGradient2: '#c8e6c9',
+                backgroundGradient3: '#a5d6a7',
+                backgroundGradient4: '#81c784',
+                mainFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Changed to Nunito font
                 fontSize: '16px',
-                headerFont: 'Arial, sans-serif',
+                headerFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Changed to Nunito font
+                headerTextColor: '#4caf50',
+                mainTextColor: '#000000',
+                hintTextColor: '#81c784',
                 linkColor: '#4caf50',
                 buttonColor: '#8bc34a',
                 buttonTextColor: '#ffffff'
@@ -283,16 +541,138 @@ function applyTheme(theme) {
         case 'sunset':
             settings = {
                 backgroundColor: '#ffecd2',
-                textColor: '#3e2723',
+                textColor: '#000000', // Changed to black text
                 accentColor: '#ff9800',
                 headerColor: '#ffccbc',
                 footerColor: '#ffab91',
                 cardBackgroundColor: '#ffefe0',
-                mainFont: 'Arial, sans-serif',
+                backgroundGradient1: '#ffecd2',
+                backgroundGradient2: '#ffccbc',
+                backgroundGradient3: '#ffab91',
+                backgroundGradient4: '#ff8a65',
+                mainFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Changed to Nunito font
                 fontSize: '16px',
-                headerFont: 'Arial, sans-serif',
+                headerFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Changed to Nunito font
+                headerTextColor: '#ff9800',
+                mainTextColor: '#000000',
+                hintTextColor: '#ff8a65',
                 linkColor: '#e65100',
                 buttonColor: '#ff9800',
+                buttonTextColor: '#ffffff'
+            };
+            break;
+        case 'red':
+            settings = {
+                backgroundColor: '#ffebee',
+                textColor: '#000000', // Black text
+                accentColor: '#f44336',
+                headerColor: '#ffcdd2',
+                footerColor: '#ef9a9a',
+                cardBackgroundColor: '#ffffff',
+                backgroundGradient1: '#ffebee',
+                backgroundGradient2: '#ffcdd2',
+                backgroundGradient3: '#ef9a9a',
+                backgroundGradient4: '#e57373',
+                mainFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Nunito font
+                fontSize: '16px',
+                headerFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Nunito font
+                headerTextColor: '#f44336',
+                mainTextColor: '#000000',
+                hintTextColor: '#e57373',
+                linkColor: '#d32f2f',
+                buttonColor: '#f44336',
+                buttonTextColor: '#ffffff'
+            };
+            break;
+        case 'purple':
+            settings = {
+                backgroundColor: '#f3e5f5',
+                textColor: '#000000', // Black text
+                accentColor: '#9c27b0',
+                headerColor: '#e1bee7',
+                footerColor: '#ce93d8',
+                cardBackgroundColor: '#ffffff',
+                backgroundGradient1: '#f3e5f5',
+                backgroundGradient2: '#e1bee7',
+                backgroundGradient3: '#ce93d8',
+                backgroundGradient4: '#ba68c8',
+                mainFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Nunito font
+                fontSize: '16px',
+                headerFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Nunito font
+                headerTextColor: '#9c27b0',
+                mainTextColor: '#000000',
+                hintTextColor: '#ba68c8',
+                linkColor: '#7b1fa2',
+                buttonColor: '#9c27b0',
+                buttonTextColor: '#ffffff'
+            };
+            break;
+        case 'orange':
+            settings = {
+                backgroundColor: '#fff3e0',
+                textColor: '#000000', // Black text
+                accentColor: '#ff9800',
+                headerColor: '#ffe0b2',
+                footerColor: '#ffcc80',
+                cardBackgroundColor: '#ffffff',
+                backgroundGradient1: '#fff3e0',
+                backgroundGradient2: '#ffe0b2',
+                backgroundGradient3: '#ffcc80',
+                backgroundGradient4: '#ffb74d',
+                mainFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Nunito font
+                fontSize: '16px',
+                headerFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Nunito font
+                headerTextColor: '#ff9800',
+                mainTextColor: '#000000',
+                hintTextColor: '#ffb74d',
+                linkColor: '#f57c00',
+                buttonColor: '#ff9800',
+                buttonTextColor: '#000000'
+            };
+            break;
+        case 'teal':
+            settings = {
+                backgroundColor: '#e0f2f1',
+                textColor: '#000000', // Black text
+                accentColor: '#009688',
+                headerColor: '#b2dfdb',
+                footerColor: '#80cbc4',
+                cardBackgroundColor: '#ffffff',
+                backgroundGradient1: '#e0f2f1',
+                backgroundGradient2: '#b2dfdb',
+                backgroundGradient3: '#80cbc4',
+                backgroundGradient4: '#4db6ac',
+                mainFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Nunito font
+                fontSize: '16px',
+                headerFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Nunito font
+                headerTextColor: '#009688',
+                mainTextColor: '#000000',
+                hintTextColor: '#4db6ac',
+                linkColor: '#00796b',
+                buttonColor: '#009688',
+                buttonTextColor: '#ffffff'
+            };
+            break;
+        case 'pink':
+            settings = {
+                backgroundColor: '#fce4ec',
+                textColor: '#000000', // Black text
+                accentColor: '#e91e63',
+                headerColor: '#f8bbd0',
+                footerColor: '#f48fb1',
+                cardBackgroundColor: '#ffffff',
+                backgroundGradient1: '#fce4ec',
+                backgroundGradient2: '#f8bbd0',
+                backgroundGradient3: '#f48fb1',
+                backgroundGradient4: '#f06292',
+                mainFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Nunito font
+                fontSize: '16px',
+                headerFont: "'Nunito', 'Poppins', 'Segoe UI', Arial, sans-serif", // Nunito font
+                headerTextColor: '#e91e63',
+                mainTextColor: '#000000',
+                hintTextColor: '#f06292',
+                linkColor: '#c2185b',
+                buttonColor: '#e91e63',
                 buttonTextColor: '#ffffff'
             };
             break;
@@ -305,13 +685,52 @@ function applyTheme(theme) {
             inputElement.value = settings[settingName];
             
             // Apply the setting
-            const event = new Event('input', { bubbles: true });
+            let event;
             if (inputElement.type === 'select-one') {
                 event = new Event('change', { bubbles: true });
+            } else {
+                event = new Event('input', { bubbles: true });
             }
             inputElement.dispatchEvent(event);
         }
     });
+    
+    // Update the theme preview after applying theme
+    updateThemePreview();
+    
+    // Apply CSS custom properties to document root so they affect the entire project
+    Object.keys(settings).forEach(settingName => {
+        const cssVar = settingName.replace(/([A-Z])/g, '-$1').toLowerCase(); // Convert camelCase to kebab-case
+        let cssProp = `--${cssVar}`;
+        
+        // Special case mappings for some variables
+        if (settingName === 'mainFont') cssProp = '--main-font';
+        else if (settingName === 'headerFont') cssProp = '--header-font';
+        else if (settingName === 'fontSize') cssProp = '--font-size';
+        else if (settingName === 'linkColor') cssProp = '--link-color';
+        else if (settingName === 'buttonColor') cssProp = '--button-color';
+        else if (settingName === 'buttonTextColor') cssProp = '--button-text-color';
+        else if (settingName === 'backgroundColor') cssProp = '--background-color';
+        else if (settingName === 'textColor') cssProp = '--text-color';
+        else if (settingName === 'accentColor') cssProp = '--accent-color';
+        else if (settingName === 'headerColor') cssProp = '--header-color';
+        else if (settingName === 'footerColor') cssProp = '--footer-color';
+        else if (settingName === 'cardBackgroundColor') cssProp = '--card-background-color';
+        
+        document.documentElement.style.setProperty(cssProp, settings[settingName]);
+    });
+    
+    // Update the background gradient based on the new settings
+    updateBackgroundGradient();
+    
+    // Update body styles to ensure theme is applied properly
+    const bg = settings['backgroundColor'];
+    const text = settings['textColor'];
+    const font = settings['mainFont'];
+    
+    document.body.style.backgroundColor = bg;
+    document.body.style.color = text;
+    document.body.style.fontFamily = font;
 }
 
 function showSaveNotification() {

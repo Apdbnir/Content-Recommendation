@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ContRec</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <div class="menu-icon">
+        <div class="menu-icon-line"></div>
+        <div class="menu-icon-line"></div>
+        <div class="menu-icon-line"></div>
+    </div>
+
+    <div class="profile-icon" id="profileIcon">
+        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4" fill="currentColor"/>
+            <path d="M20 20C20 17.9231 20 16.3077 19.1304 15.1538C18.3643 14.133 17.133 13.6357 16 13.5C14.4615 13.5 13.2308 13.5 12 13.5C10.7692 13.5 9.53846 13.5 8 13.5C6.86704 13.6357 5.63571 14.133 4.86957 15.1538C4 16.3077 4 17.9231 4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="profile-dropdown" id="profileDropdown">
+            <!-- Dropdown content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <nav class="menu-nav">
+        <ul>
+            <li><a href="main.html" data-translate="home">Home</a></li>
+            <li><a href="platforms.html?from=main" data-translate="change_platforms_interests">Change Platforms & Interests</a></li>
+            <li><a href="settings.html" data-translate="settings">Settings</a></li>
+            <li><a href="developers.html" data-translate="developers">Developers</a></li>
+            <li><a href="donate_cookies.html" data-translate="donate_cookies">На чай и печеньки</a></li>
+            <li><a href="documentation.html" data-translate="documentation">Documentation</a></li>
+            <li class="language-switcher">
+                <a href="#" id="lang-switcher-toggle" data-translate="language">Language</a>
+                <ul class="language-submenu">
+                    <li><a href="#" data-lang="ru">Русский</a></li>
+                    <li><a href="#" data-lang="en">English</a></li>
+                    <li><a href="#" data-lang="be">Беларуская</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="menu-nav-footer">
+            <a href="#" id="login-btn" data-translate="login">Login</a>
+            <a href="#" id="logout-btn" data-translate="logout" style="display: none;">Logout</a>
+            <div class="menu-nav-footer-links">
+                <a href="#" class="footer-link" data-translate="about">About</a>
+                <a href="#" class="footer-link" data-translate="help">Help</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="content">
+            <div class="register-form-container">
+                <h1 data-translate="register_title">Create Account</h1>
+                <p class="subtitle">Fill in your personal information to create your account</p>
+                
+                <form id="registerForm" class="register-form">
+                    <div class="form-group">
+                        <label for="firstName" data-translate="first_name">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName" data-translate="last_name">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" data-translate="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="username" data-translate="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" data-translate="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword" data-translate="confirm_password">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthDate" data-translate="birth_date">Birth Date</label>
+                        <input type="date" id="birthDate" name="birthDate">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gender" data-translate="gender">Gender</label>
+                        <select id="gender" name="gender">
+                            <option value="" data-translate="select_gender" selected>Choose...</option>
+                            <option value="male" data-translate="male">Male</option>
+                            <option value="female" data-translate="female">Female</option>
+                            <option value="other" data-translate="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="country" data-translate="country">Country</label>
+                        <select id="country" name="country">
+                            <option value="" data-translate="select_country" selected>Choose...</option>
+                            <option value="Russia">Russia</option>
+                            <option value="Belarus">Belarus</option>
+                            <option value="USA">USA</option>
+                            <option value="Other" data-translate="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="city" data-translate="city">City</label>
+                        <input type="text" id="city" name="city">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <span data-translate="newsletter_subscription">Subscribe to newsletter</span>
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <span data-translate="terms_agreement">I agree to the Terms and Conditions</span> *
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="register-btn" data-translate="register">Register</button>
+                </form>
+                
+                <div class="oauth-section">
+                    <p data-translate="or_register_with">Or register with:</p>
+                    <div class="oauth-buttons">
+                        <button class="oauth-btn google" id="googleRegister">
+                            <svg class="oauth-icon" width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z"/>
+                            </svg>
+                            <span>Google</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="login-link">
+                    <p data-translate="already_have_account">Already have an account?</p>
+                    <a href="login.html" data-translate="login">Login</a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="translation.js"></script>
+    <script src="app.js"></script>
+    <script src="register.js"></script>
+</body>
+</html>
